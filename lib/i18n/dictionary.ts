@@ -10,6 +10,10 @@ export type Dictionary = {
     about: string;
     contact: string;
   };
+  a11y: {
+    primaryNav: string;
+    languageSwitcher: string;
+  };
   home: {
     eyebrow: string;
     tagline: string;
@@ -32,6 +36,10 @@ const dictionaries: Record<Locale, Dictionary> = {
       about: "About",
       contact: "Contact",
     },
+    a11y: {
+      primaryNav: "Primary",
+      languageSwitcher: "Language",
+    },
     home: {
       eyebrow: "Foundation preview",
       tagline: "{{TAGLINE}}",
@@ -51,6 +59,10 @@ const dictionaries: Record<Locale, Dictionary> = {
       work: "Karya",
       about: "Tentang",
       contact: "Kontak",
+    },
+    a11y: {
+      primaryNav: "Utama",
+      languageSwitcher: "Bahasa",
     },
     home: {
       eyebrow: "Pratinjau fondasi",
