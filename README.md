@@ -1,4 +1,4 @@
-# Portfolio
+# Portfolio — Muhammad Rizky Firdiansyah
 
 Personal portfolio built with Next.js 16 (App Router), React 19, and Tailwind CSS 4.
 Bilingual (English / Indonesian), static-first, no UI library.
@@ -29,28 +29,48 @@ app/[lang]/                 root layout, locale from next/root-params
 app/[lang]/(site)/          pages with header + footer
 app/[lang]/styleguide/      internal token reference (noindex)
 components/chrome/          header, footer, locale-aware navigation
+components/contact/         icon-only contact links
 components/layout/          page header, not-found content
+components/ui/              inline SVG icons (no icon dependency)
 components/work/            project index
-content/projects.ts         project data (sample content)
+content/projects.ts         case studies (EN + ID)
+content/resume.ts           education, experience, certifications, awards
 design/DIRECTION.md         art direction, rules, kill list
 lib/i18n/                   locales, dictionary, locale resolver
-lib/site.ts                 name, position, email
+lib/site.ts                 identity and contact details
 proxy.ts                    locale redirects
+public/                     CV PDF
 ```
 
 ## Routes
 
 `/` redirects to `/en`. Both locales are prefixed: `/en/...` and `/id/...`.
-Pages: home, `/work`, `/work/[slug]`, `/about`, `/contact`, plus `/styleguide`.
+Pages: home, `/work`, `/work/[slug]`, `/about`, `/resume`, `/contact`,
+plus the internal `/styleguide`.
 
 ## Editing content
 
-- **Identity**: replace `{{NAME}}`, `{{POSITION}}`, `{{EMAIL}}` in `lib/site.ts`.
-- **Copy**: `lib/i18n/dictionary.ts` (two locales, same keys).
-- **Projects**: `content/projects.ts`. Replace the sample entries — names,
-  figures, and outcomes are placeholders. Keep the shape: context, constraints,
-  decisions with tradeoffs, outcome.
+- **Identity and contact**: `lib/site.ts`. The phone number is stored in
+  international format for `tel:` links.
+- **Project links**: `content/projects.ts` → `links.demo` and `links.repo`.
+  Each one renders only when it holds a URL. Leave both empty to hide the row.
+- **Project copy**: same file, `copy.en` / `copy.id`.
+- **GitHub icon**: set `site.github` in `lib/site.ts`; the icon appears on its own.
+- **Resume data**: `content/resume.ts` — education, experience, certifications,
+  awards, and the skill groups used on the About page.
+- **Interface copy**: `lib/i18n/dictionary.ts` (two locales, same keys).
 - **Tagline**: `home.tagline` in both dictionaries.
+- **CV file**: `public/CV_MuhammadRizkyFirdiansyah.pdf`, linked from `/resume`.
+
+Certification titles stay untranslated because they are official course names.
+Programme names are kept verbatim so the site and the PDF agree.
+
+## Contact links
+
+Contact is icon-only by request: no email address or phone number is rendered
+as selectable text. Each link has an `aria-label` and a `title`, and the icons
+are 20px inside 44px targets. The values still exist in the `href` attributes,
+so this prevents casual copying, not scraping.
 
 ## Design rules
 
@@ -65,5 +85,8 @@ transitions, and motion tokens.
 - Unknown project slugs render the custom not-found page with HTTP 200 because
   the route is partially prerendered. The page is `noindex` and the content is
   unambiguous, but the status is a soft 404.
+- Outcomes in the case studies are qualitative: no usage figures were available
+  and none were invented. Add numbers to `content/projects.ts` when verified.
+- No demo or repository links are shown until their URLs are filled in.
 - Dark mode is intentionally not implemented.
-- Contact has no form; email is a direct `mailto:` link.
+- Contact has no form; the email icon opens a `mailto:` link.
