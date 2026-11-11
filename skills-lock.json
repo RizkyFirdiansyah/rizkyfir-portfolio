@@ -1,23 +1,35 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
+    "canvas-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/canvas-design/SKILL.md",
+      "computedHash": "1866477474e694f562261008bb6a817e53f027b6347b062fbd1e2ee2eb83f20d"
+    },
+    "copywriting": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "skillPath": "skills/copywriting/SKILL.md",
+      "computedHash": "b948ac03ec661626b8fc198786ecf761a97e0dacf626cb90d3b5016e9e3baf2f"
+    },
     "transitions-dev": {
       "source": "Jakubantalik/transitions.dev",
       "sourceType": "github",
       "skillPath": "skills/transitions-dev/SKILL.md",
-      "computedHash": "a6752e3d9482300f44bc9c58b4dcd042f2744a3ea2c0783d58a1cd0fc918be41"
+      "computedHash": "c7bc25bf1998615c73188bfcef6deca06c43f1b6f64538a456d446ca9d3911cd"
     },
     "transitions-polish": {
       "source": "Jakubantalik/transitions.dev",
       "sourceType": "github",
       "skillPath": "skills/transitions-polish/SKILL.md",
-      "computedHash": "e456d8cc8ef3b18ae9d1f5be41ea92b0b14abeb8cf8cf7eff2da09966b15a785"
+      "computedHash": "37a0842bfb0d9778b9a01fdd83947749476a9549addc60b31c9b8bfe2b2d9aae"
     },
     "ux-designer": {
       "source": "szilu/ux-designer-skill",
       "sourceType": "github",
       "skillPath": "SKILL.md",
-      "computedHash": "40429a131efcee588340176ad4f8c07b5e787d302065d552ea29121944b535d6"
+      "computedHash": "5e1edfb0c4a408fa79b0bd357dbdc9a15ca4758230132443feea9ac51d310263"
     }
   }
 }
