@@ -56,7 +56,7 @@ export default async function ResumePage() {
         <a
           href={site.cv}
           download
-          className="inline-flex items-center gap-2 border border-ink px-4 py-3 font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:bg-ink hover:text-paper"
+          className="inline-flex items-center gap-2 border border-ink px-4 py-3 font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:bg-ink hover:text-paper active:bg-ink active:text-paper"
         >
           <DownloadIcon />
           {dictionary.resume.download}

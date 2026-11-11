@@ -15,7 +15,7 @@ export function SiteHeader({ locale, dictionary }: SiteHeaderProps) {
       <div className="mx-auto flex max-w-page flex-wrap items-baseline justify-between gap-x-8 gap-y-3 px-4 py-4 md:px-6">
         <Link
           href={`/${locale}`}
-          className="font-serif text-xl tracking-tight text-ink"
+          className="font-serif text-lg tracking-tight text-ink md:text-xl"
         >
           {site.name}
         </Link>
