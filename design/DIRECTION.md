@@ -3,12 +3,14 @@
 > Dokumen ini adalah sumber kebenaran visual. Jika sebuah komponen tidak sesuai dengannya,
 > komponen itu yang salah, bukan dokumen ini.
 >
-> Status: identitas belum diisi. Placeholder `{{NAME}}`, `{{POSITION}}`, `{{TAGLINE}}`
-> harus diganti sebelum situs dipublikasikan — token visual tidak perlu berubah.
+> Status: identitas sudah terisi. Gambar memakai plat sementara di
+> `public/images/` sampai foto asli tersedia; lihat `design/CANVAS.md` untuk
+> daftar slot dan cara menggantinya.
 
 ## 1. Posisi
 
-`{{TAGLINE}}` — satu kalimat, maksimal 14 kata, tanpa kata "passionate", "creative", atau "solutions".
+`Backends for lab systems, and weddings that cannot run late.` — satu kalimat,
+10 kata, tanpa kata "passionate", "creative", atau "solutions".
 
 Tiga kata sifat yang mengikat semua keputusan: **tenang · cerdas · personal**.
 
@@ -102,7 +104,6 @@ scroll indicator · Inter/Geist sebagai display · klaim tanpa angka · lorem ip
 
 | Hal | Dampak | Catatan |
 |---|---|---|
-| Nama & handle | metadata, footer, OG image | placeholder |
-| Posisi yang dituju | urutan section, CTA | memengaruhi Home |
-| Warna aksen final | seluruh situs | terracotta adalah default yang lolos AA |
-| Domain | `metadataBase`, sitemap | menunggu deploy |
+| Domain | `metadataBase`, sitemap, OG image | menunggu deploy |
+| Foto asli | portrait, band, visual proyek | menggantikan plat di `public/images/` |
+| Warna aksen final | seluruh situs | terracotta dipertahankan, lolos AA |

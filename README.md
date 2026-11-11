@@ -31,11 +31,15 @@ app/[lang]/styleguide/      internal token reference (noindex)
 components/chrome/          header, footer, locale-aware navigation
 components/contact/         icon-only contact links
 components/layout/          page header, not-found content
+components/media/           figure with optional caption
 components/ui/              inline SVG icons (no icon dependency)
 components/work/            project index
 content/projects.ts         case studies (EN + ID)
 content/resume.ts           education, experience, certifications, awards
+content/media.ts            every image slot: src, size, alt, caption
 design/DIRECTION.md         art direction, rules, kill list
+design/CANVAS.md            plate set and how to replace it with photos
+design/plates/              Pillow generator for the plates (manual tool)
 lib/i18n/                   locales, dictionary, locale resolver
 lib/site.ts                 identity and contact details
 proxy.ts                    locale redirects
@@ -61,6 +65,26 @@ plus the internal `/styleguide`.
 - **Interface copy**: `lib/i18n/dictionary.ts` (two locales, same keys).
 - **Tagline**: `home.tagline` in both dictionaries.
 - **CV file**: `public/CV_MuhammadRizkyFirdiansyah.pdf`, linked from `/resume`.
+- **Images**: every image is declared in `content/media.ts` (`src`, `width`,
+  `height`, `alt`, optional `caption`, both locales). Generated plates live in
+  `public/images/` and `public/og.png`.
+
+## Replacing the generated plates with photographs
+
+1. Drop the photo into `public/images/` using the same filename and aspect ratio
+   (3:2 for project and event slots, 4:5 for the portrait).
+2. If the extension changed, update `src`, `width`, and `height` in
+   `content/media.ts`.
+3. Rewrite `alt` and `caption` in that file for both locales. Alt describes the
+   function of the image; the caption is optional and sits on a hairline.
+4. Re-run `npm run build`. Next caches optimised images, so delete
+   `.next/cache/images` if a replaced file still shows the old version.
+
+Slots: `portrait` (About), `homeBand` (full-bleed Home band, 2400×1600),
+`ivssSchema` + `ivssModules`, `lombaFlow` + `lombaApproval`, `eventRunsheet`
+(About). `/og.png` is the Open Graph card. `design/CANVAS.md` documents what each
+plate contains and how it was made; `design/plates/make_plates.py` regenerates
+the plates with Pillow (a local tool, not an application dependency).
 
 Certification titles stay untranslated because they are official course names.
 Programme names are kept verbatim so the site and the PDF agree.
