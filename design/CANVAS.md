@@ -28,7 +28,8 @@ tanda signal yang menandai hubungan atau baris yang penting.
   kolom, atau izin yang dikarang untuk mengisi ruang.
 - Runsheet acara diberi label TEMPLATE karena bukan catatan satu acara tertentu.
 - Nomor `FIG. 0x` adalah bagian dari gambar, bukan label sementara. Saat foto
-  menggantikan plat, nomor dan caption pindah ke `<figcaption>` di halaman.
+  menggantikan plat, nomor itu ikut hilang; caption di halaman tetap bekerja
+  karena hidup di `<figcaption>`, bukan di dalam berkas gambar.
 - Setiap plat punya area yang aman untuk crop 3:2 atau 4:5; tidak ada teks yang
   menyentuh tepi.
 
@@ -37,7 +38,7 @@ tanda signal yang menandai hubungan atau baris yang penting.
 | Fig. | Berkas | Ukuran | Isi |
 |---|---|---|---|
 | 00 | `public/images/portrait.png` | 1200×1500 | Plat potret 4:5 |
-| 01 | `public/images/home-band.png` | 2400×1600 | Indeks karya, band 3:2 |
+| 01 | `public/images/home-band.png` | 2400×1600 | Plat tempat, band 3:2 |
 | 02 | `public/images/ivss-01.png` | 2400×1600 | Skema relasional IVSS |
 | 03 | `public/images/ivss-02.png` | 2400×1600 | Peta modul dan peran |
 | 04 | `public/images/lomba-01.png` | 2400×1600 | Alur entitas lomba |

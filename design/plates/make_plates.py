@@ -162,42 +162,20 @@ def home_band():
     inner = 2400 - 2 * m
 
     for i in range(1, 12):
-        s.vline(m + (inner * i) / 12, 176, 1260, RULE, 1)
+        s.vline(m + (inner * i) / 12, 176, 1420, RULE, 1)
 
-    s.mono("SELECTED WORK / 2025-2026", m, m, 18, MUTED, 2.4)
-    s.mono_right("TWO PROJECTS / ONE PRACTICE", 2400 - m, m, 18, MUTED, 2.4)
+    s.mono("FIELD NOTE / 01", m, m, 18, MUTED, 2.4)
+    s.mono_right("MALANG / INDONESIA", 2400 - m, m, 18, MUTED, 2.4)
     s.hline(m, 2400 - m, m + 56)
 
-    rows = [
-        ("2026", "Web Profil & CMS Laboratorium IVSS", "PROJECT MANAGER / SYSTEM ANALYST / ENGINEER"),
-        ("2025", "Web Informasi Lomba Jurusan", "BACKEND DEVELOPER / SYSTEM ANALYST"),
-    ]
+    size = s.fit(SERIF, "Malang", 1800, 560)
+    s.serif("Malang", m - 8, 500, size)
 
-    y = 300
-    for year, title, role in rows:
-        s.mono(year, m, y + 10, 20, MUTED, 2.4)
-        size = s.fit(SERIF, title, 1150, 78)
-        s.serif(title, 480, y, size)
-        s.mono(role, 480, y + 112, 16, MUTED, 2.2)
-        s.hline(m, 1720, y + 230)
-        y += 300
+    s.hline(m, m + 320, 1180, SIGNAL, 3)
+    s.mono("07.97 S / 112.63 E", m, 1220, 20, INK, 2.4)
+    s.mono("EAST JAVA / 2026", m, 1264, 15, MUTED, 2.2)
 
-    s.mono("PROJECTS", 1800, 300, 15, MUTED, 2.4)
-    s.hline(1800, 2280, 360, SIGNAL, 2)
-    s.serif("02", 1800, 380, 250)
-    s.mono("ONE PRACTICE", 1800, 660, 15, MUTED, 2.4)
-
-    s.hline(m, 2400 - m, 980, RULE)
-    s.mono("STACK", m, 1010, 14, MUTED, 2.4)
-    s.mono("PHP / LARAVEL / POSTGRESQL / PYTHON", m, 1046, 18, INK, 2.2)
-    s.mono("EVENT & WEDDING COORDINATION", 1360, 1010, 14, MUTED, 2.4)
-    s.mono("SCHEDULES / VENDORS / CREW", 1360, 1046, 18, INK, 2.2)
-
-    s.hline(m, 2400 - m, 1300)
-    s.mono("BACKEND / DATA / EVENTS", m, 1330, 16, INK, 2.4)
-    s.mono("MALANG / INDONESIA", m, 1368, 14, MUTED, 2.2)
-    s.mono_right("2025-2026", 2400 - m, 1330, 14, MUTED, 2.2)
-    s.mono_right("FIG. 01", 2400 - m, 1368, 14, MUTED, 2.2)
+    s.mono_right("FIG. 01 / 3:2", 2400 - m, 1264, 15, MUTED, 2.2)
     return s, IMAGE_DIR / "home-band.png"
 
 
