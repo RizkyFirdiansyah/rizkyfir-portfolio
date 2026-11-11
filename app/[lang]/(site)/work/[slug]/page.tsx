@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowUpRightIcon } from "@/components/ui/icons";
 import { getProject, projects } from "@/content/projects";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
@@ -87,6 +88,29 @@ export default async function CaseStudyPage({
           <dd className="mt-1">{project.stack.join(" · ")}</dd>
         </div>
       </dl>
+
+      {project.links.demo || project.links.repo ? (
+        <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-2">
+          {project.links.demo ? (
+            <a
+              href={project.links.demo}
+              className="inline-flex items-center gap-1 font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+            >
+              {dictionary.caseStudy.demo}
+              <ArrowUpRightIcon width={14} height={14} />
+            </a>
+          ) : null}
+          {project.links.repo ? (
+            <a
+              href={project.links.repo}
+              className="inline-flex items-center gap-1 font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+            >
+              {dictionary.caseStudy.repo}
+              <ArrowUpRightIcon width={14} height={14} />
+            </a>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="mt-16 grid grid-cols-12 gap-4 md:gap-6">
         <div className="col-span-12 md:col-span-7">

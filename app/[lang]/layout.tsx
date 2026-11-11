@@ -8,6 +8,7 @@ import "../globals.css";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
 import { locales } from "@/lib/i18n/locales";
+import { site } from "@/lib/site";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -39,8 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: dictionary.meta.title,
-      template: `%s — ${dictionary.meta.title}`,
+      default: `${site.name} — ${site.position}`,
+      template: `%s — ${site.name}`,
     },
     description: dictionary.meta.description,
     alternates: {

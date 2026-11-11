@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactLinks } from "@/components/contact/contact-links";
 import { ProjectIndex } from "@/components/work/project-index";
 import { getFeaturedProjects } from "@/content/projects";
 import { getDictionary } from "@/lib/i18n/dictionary";
@@ -13,9 +14,17 @@ export default async function HomePage() {
   return (
     <div className="mx-auto max-w-page px-4 md:px-6">
       <section className="grid grid-cols-12 gap-4 pt-16 pb-20 md:gap-6 md:pt-24 md:pb-28">
-        <p className="col-span-12 font-mono text-meta text-muted uppercase md:col-span-3">
-          {site.position}
-        </p>
+        <div className="col-span-12 flex flex-col gap-2 md:col-span-3">
+          <p className="font-mono text-meta text-muted uppercase">
+            {site.position}
+          </p>
+          <p className="font-mono text-meta text-muted uppercase">
+            {site.secondary}
+          </p>
+          <p className="font-mono text-meta text-muted uppercase">
+            {site.location}
+          </p>
+        </div>
         <div className="col-span-12 md:col-span-9">
           <h1 className="max-w-measure font-serif text-display text-balance">
             {dictionary.home.tagline}
@@ -77,14 +86,9 @@ export default async function HomePage() {
           <p className="max-w-measure text-body text-muted">
             {dictionary.home.contactTeaser}
           </p>
-          <p className="mt-4">
-            <a
-              href={`mailto:${site.email}`}
-              className="font-serif text-h2 underline decoration-rule decoration-1 underline-offset-8 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
-            >
-              {site.email}
-            </a>
-          </p>
+          <div className="mt-2 -ml-3">
+            <ContactLinks labels={dictionary.contact} />
+          </div>
         </div>
       </section>
     </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
+import { skillGroups } from "@/content/resume";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
 
@@ -36,19 +38,38 @@ export default async function AboutPage() {
               {paragraph}
             </p>
           ))}
+
+          <p className="mt-8">
+            <Link
+              href={`/${locale}/resume`}
+              className="font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+            >
+              {dictionary.about.resumeLink}
+            </Link>
+          </p>
         </div>
 
-        <aside className="col-span-12 md:col-span-4 md:col-start-9">
+        <aside className="col-span-12 mt-12 md:col-span-4 md:col-start-9 md:mt-0">
           <h2 className="font-mono text-meta text-muted uppercase">
-            {dictionary.about.focusTitle}
+            {dictionary.about.skillsTitle}
           </h2>
-          <ul className="mt-4 space-y-2 border-t border-rule pt-4">
-            {dictionary.about.focus.map((item) => (
-              <li key={item} className="text-body text-muted">
-                {item}
-              </li>
+
+          <div className="mt-4 border-t border-rule">
+            {skillGroups.map((group) => (
+              <div key={group.label.en} className="border-b border-rule py-4">
+                <h3 className="font-mono text-meta text-ink uppercase">
+                  {group.label[locale]}
+                </h3>
+                <ul className="mt-2 space-y-1">
+                  {group.items.map((item) => (
+                    <li key={item} className="text-body text-muted">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </aside>
       </div>
     </div>

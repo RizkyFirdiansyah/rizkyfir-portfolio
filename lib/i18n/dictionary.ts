@@ -2,12 +2,12 @@ import type { Locale } from "./locales";
 
 export type Dictionary = {
   meta: {
-    title: string;
     description: string;
   };
   nav: {
     work: string;
     about: string;
+    resume: string;
     contact: string;
   };
   a11y: {
@@ -36,22 +36,36 @@ export type Dictionary = {
     role: string;
     year: string;
     stack: string;
-    read: string;
+    demo: string;
+    repo: string;
   };
   about: {
     eyebrow: string;
     title: string;
     intro: string;
     paragraphs: string[];
-    focusTitle: string;
-    focus: string[];
+    skillsTitle: string;
+    resumeLink: string;
+  };
+  resume: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    download: string;
+    education: string;
+    experience: string;
+    certifications: string;
+    awards: string;
   };
   contact: {
     eyebrow: string;
     title: string;
     intro: string;
-    emailLabel: string;
     note: string;
+    email: string;
+    phone: string;
+    linkedin: string;
+    github: string;
   };
   notFound: {
     code: string;
@@ -67,12 +81,13 @@ export type Dictionary = {
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      title: "{{NAME}} — {{POSITION}}",
-      description: "{{TAGLINE}}",
+      description:
+        "Software developer and data analyst in Malang. Laravel, PostgreSQL, and Python, with a parallel practice coordinating events and weddings.",
     },
     nav: {
       work: "Work",
       about: "About",
+      resume: "Resume",
       contact: "Contact",
     },
     a11y: {
@@ -80,22 +95,23 @@ const dictionaries: Record<Locale, Dictionary> = {
       languageSwitcher: "Language",
     },
     home: {
-      tagline: "{{TAGLINE}}",
-      lede: "I build interfaces where structure does the work, not decoration. Most of my time goes into design systems, frontend architecture, and the unglamorous parts that make a product feel calm.",
+      tagline:
+        "I build web backends and work with data. I also coordinate weddings, where the deadline is not negotiable.",
+      lede: "Currently studying D-IV Teknik Informatika at Politeknik Negeri Malang. Most of my work is Laravel and PostgreSQL on the server, plain HTML and CSS in the browser, and Python when there is data to make sense of.",
       selected: "Selected work",
       allWork: "All work",
       aboutTitle: "About",
       aboutTeaser:
-        "I work best close to the code and close to the decisions behind it: naming tokens, cutting components, writing the copy that explains a choice.",
+        "Backend work, data, and event coordination are the same job from different angles: holding a plan together when other people depend on it.",
       aboutLink: "More about me",
       contactTitle: "Contact",
-      contactTeaser: "The fastest way to reach me is email.",
+      contactTeaser: "Email, phone, or LinkedIn — pick whichever you check.",
     },
     work: {
       eyebrow: "Work",
       title: "Selected work",
       intro:
-        "Three projects, described by the constraints they had and the decisions they forced. No process diagrams.",
+        "Two projects, described by the constraints they had and the decisions they forced: a department opportunity platform, and a laboratory profile with its own CMS.",
       empty: "No projects published yet.",
     },
     caseStudy: {
@@ -103,33 +119,43 @@ const dictionaries: Record<Locale, Dictionary> = {
       role: "Role",
       year: "Year",
       stack: "Stack",
-      read: "Read case study",
+      demo: "View live",
+      repo: "Repository",
     },
     about: {
       eyebrow: "About",
-      title: "How I work",
+      title: "Software, data, and the occasional wedding",
       intro:
-        "I am a frontend engineer who spends as much time on naming and structure as on the interface itself.",
+        "I study D-IV Teknik Informatika at Politeknik Negeri Malang, build web backends in Laravel and PHP, and work with data in Python and SQL. Outside campus I coordinate events and weddings.",
       paragraphs: [
-        "I started with static sites, moved into product work, and stayed because the interesting problems live at the boundary between design and implementation: what a component is allowed to know, which decision belongs in a token, and when a pattern should be deleted rather than documented.",
-        "My default is to reduce. Fewer components, fewer variants, fewer states that nobody tests. Most interface problems I have seen were not missing features but overlapping ones, and the work was deciding which version survives.",
-        "I write documentation while building, not after. If a decision cannot be explained in two sentences, it usually means the decision is not finished.",
+        "Most of my work is backend: relational schemas, REST APIs, access rules, and the approval flows that decide when something is allowed to appear. I like the part where a data model has to survive contact with real users — a bookmark that must be unique, a role that must not see a menu, a deadline that must be verified before it is published.",
+        "The coordination work is not a detour. Running an event means holding a schedule with other people, where a missed detail is visible immediately and cannot be patched after deployment. It taught me to write things down, to confirm before assuming, and to keep a plan simple enough that a tired person can follow it at six in the morning.",
+        "I document while building, not afterwards. If a decision cannot be explained in two sentences, it usually means the decision is not finished.",
       ],
-      focusTitle: "Focus",
-      focus: [
-        "Design systems and design tokens",
-        "Frontend architecture in React and Next.js",
-        "Accessibility as a correctness issue, not a checklist",
-        "Interface copy in Indonesian and English",
-      ],
+      skillsTitle: "Skills",
+      resumeLink: "Education, experience, and certifications",
+    },
+    resume: {
+      eyebrow: "Resume",
+      title: "Record",
+      intro:
+        "Education, work, certifications, and one award. The PDF version is the same record, formatted for printing.",
+      download: "Download CV",
+      education: "Education",
+      experience: "Experience",
+      certifications: "Certifications",
+      awards: "Award",
     },
     contact: {
       eyebrow: "Contact",
       title: "Say hello",
       intro:
         "I read every message. Short and specific gets a faster reply than a long brief.",
-      emailLabel: "Email",
       note: "For work enquiries, include the problem, the timeline, and what has already been tried.",
+      email: "Email",
+      phone: "Phone",
+      linkedin: "LinkedIn",
+      github: "GitHub",
     },
     notFound: {
       code: "404",
@@ -143,12 +169,13 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   id: {
     meta: {
-      title: "{{NAME}} — {{POSITION}}",
-      description: "{{TAGLINE}}",
+      description:
+        "Software developer dan data analyst di Malang. Laravel, PostgreSQL, dan Python, dengan kegiatan paralel mengoordinasikan acara dan pernikahan.",
     },
     nav: {
       work: "Karya",
       about: "Tentang",
+      resume: "Riwayat",
       contact: "Kontak",
     },
     a11y: {
@@ -156,22 +183,23 @@ const dictionaries: Record<Locale, Dictionary> = {
       languageSwitcher: "Bahasa",
     },
     home: {
-      tagline: "{{TAGLINE}}",
-      lede: "Saya membangun antarmuka yang kekuatannya ada pada struktur, bukan dekorasi. Sebagian besar waktu saya habis di design system, arsitektur frontend, dan bagian tidak menarik yang membuat produk terasa tenang.",
+      tagline:
+        "Saya membangun backend web dan mengolah data. Saya juga mengoordinasikan pernikahan, tempat tenggat tidak bisa ditawar.",
+      lede: "Sedang menempuh D-IV Teknik Informatika di Politeknik Negeri Malang. Sebagian besar pekerjaan saya adalah Laravel dan PostgreSQL di server, HTML dan CSS di browser, dan Python ketika ada data yang perlu dipahami.",
       selected: "Karya pilihan",
       allWork: "Semua karya",
       aboutTitle: "Tentang",
       aboutTeaser:
-        "Saya bekerja paling baik dekat dengan kode sekaligus dekat dengan keputusan di baliknya: menamai token, memangkas komponen, menulis teks yang menjelaskan sebuah pilihan.",
+        "Backend, data, dan koordinasi acara adalah pekerjaan yang sama dari sudut berbeda: menjaga rencana tetap utuh ketika orang lain bergantung padanya.",
       aboutLink: "Selengkapnya tentang saya",
       contactTitle: "Kontak",
-      contactTeaser: "Cara tercepat menghubungi saya adalah email.",
+      contactTeaser: "Email, telepon, atau LinkedIn — pilih yang paling sering Anda buka.",
     },
     work: {
       eyebrow: "Karya",
       title: "Karya pilihan",
       intro:
-        "Tiga proyek, dijelaskan lewat batasan yang dihadapi dan keputusan yang harus diambil. Tanpa diagram proses.",
+        "Dua proyek, dijelaskan lewat batasan yang dihadapi dan keputusan yang harus diambil: platform peluang jurusan, dan profil laboratorium dengan CMS-nya sendiri.",
       empty: "Belum ada proyek yang diterbitkan.",
     },
     caseStudy: {
@@ -179,33 +207,43 @@ const dictionaries: Record<Locale, Dictionary> = {
       role: "Peran",
       year: "Tahun",
       stack: "Stack",
-      read: "Baca case study",
+      demo: "Lihat situs",
+      repo: "Repositori",
     },
     about: {
       eyebrow: "Tentang",
-      title: "Cara saya bekerja",
+      title: "Software, data, dan sesekali pernikahan",
       intro:
-        "Saya frontend engineer yang menghabiskan waktu sama banyak untuk penamaan dan struktur, seperti untuk antarmukanya sendiri.",
+        "Saya menempuh D-IV Teknik Informatika di Politeknik Negeri Malang, membangun backend web dengan Laravel dan PHP, serta mengolah data dengan Python dan SQL. Di luar kampus saya mengoordinasikan acara dan pernikahan.",
       paragraphs: [
-        "Saya mulai dari situs statis, pindah ke pekerjaan produk, dan bertahan karena masalah menariknya ada di batas antara desain dan implementasi: apa yang boleh diketahui sebuah komponen, keputusan mana yang layak jadi token, dan kapan sebuah pattern sebaiknya dihapus daripada didokumentasikan.",
-        "Default saya adalah mengurangi. Lebih sedikit komponen, lebih sedikit varian, lebih sedikit state yang tidak pernah diuji. Sebagian besar masalah antarmuka yang saya temui bukan fitur yang kurang, melainkan fitur yang bertumpuk, dan pekerjaannya adalah memutuskan versi mana yang bertahan.",
+        "Sebagian besar pekerjaan saya ada di backend: skema relasional, REST API, aturan akses, dan alur persetujuan yang menentukan kapan sesuatu boleh tampil. Saya menyukai bagian ketika model data harus bertahan saat bertemu pengguna nyata — bookmark yang tidak boleh ganda, peran yang tidak boleh melihat menu tertentu, tenggat yang harus diverifikasi sebelum terbit.",
+        "Kerja koordinasi bukan pengalihan. Menjalankan acara berarti memegang jadwal bersama orang lain, tempat detail yang terlewat langsung terlihat dan tidak bisa ditambal setelah rilis. Dari situ saya belajar mencatat, memastikan sebelum menganggap, dan menjaga rencana cukup sederhana agar orang yang lelah pukul enam pagi masih bisa mengikutinya.",
         "Saya menulis dokumentasi sambil membangun, bukan setelahnya. Kalau sebuah keputusan tidak bisa dijelaskan dalam dua kalimat, biasanya keputusan itu belum selesai.",
       ],
-      focusTitle: "Fokus",
-      focus: [
-        "Design system dan design token",
-        "Arsitektur frontend di React dan Next.js",
-        "Aksesibilitas sebagai soal kebenaran, bukan checklist",
-        "Teks antarmuka dalam bahasa Indonesia dan Inggris",
-      ],
+      skillsTitle: "Keahlian",
+      resumeLink: "Pendidikan, pengalaman, dan sertifikasi",
+    },
+    resume: {
+      eyebrow: "Riwayat",
+      title: "Rekam jejak",
+      intro:
+        "Pendidikan, pengalaman, sertifikasi, dan satu penghargaan. Versi PDF berisi catatan yang sama, diformat untuk dicetak.",
+      download: "Unduh CV",
+      education: "Pendidikan",
+      experience: "Pengalaman",
+      certifications: "Sertifikasi",
+      awards: "Penghargaan",
     },
     contact: {
       eyebrow: "Kontak",
       title: "Sapa saya",
       intro:
         "Saya membaca setiap pesan. Pesan singkat dan spesifik lebih cepat dijawab daripada brief panjang.",
-      emailLabel: "Email",
       note: "Untuk tawaran kerja, sertakan masalahnya, tenggat, dan apa yang sudah dicoba.",
+      email: "Email",
+      phone: "Telepon",
+      linkedin: "LinkedIn",
+      github: "GitHub",
     },
     notFound: {
       code: "404",

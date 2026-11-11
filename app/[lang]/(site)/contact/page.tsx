@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ContactLinks } from "@/components/contact/contact-links";
 import { PageHeader } from "@/components/layout/page-header";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
-import { site } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -29,17 +30,22 @@ export default async function ContactPage() {
 
       <div className="mt-16 grid grid-cols-12 gap-4 border-t border-rule pt-12 md:gap-6">
         <p className="col-span-12 font-mono text-meta text-muted uppercase md:col-span-3">
-          {dictionary.contact.emailLabel}
+          {dictionary.contact.title}
         </p>
         <div className="col-span-12 md:col-span-9">
-          <a
-            href={`mailto:${site.email}`}
-            className="font-serif text-h2 underline decoration-rule decoration-1 underline-offset-8 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
-          >
-            {site.email}
-          </a>
+          <div className="-ml-3">
+            <ContactLinks labels={dictionary.contact} />
+          </div>
           <p className="mt-8 max-w-measure text-body text-muted">
             {dictionary.contact.note}
+          </p>
+          <p className="mt-6">
+            <Link
+              href={`/${locale}/resume`}
+              className="font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+            >
+              {dictionary.about.resumeLink}
+            </Link>
           </p>
         </div>
       </div>

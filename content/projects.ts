@@ -1,9 +1,3 @@
-/**
- * SAMPLE CONTENT — replace before publishing.
- * Project names, roles, and figures are placeholders used to test the layout.
- * The structure is intentional: each case study must state constraints,
- * decisions with tradeoffs, and a verifiable outcome.
- */
 import type { Locale } from "@/lib/i18n/locales";
 
 export type ProjectSection = {
@@ -20,271 +14,216 @@ export type ProjectCopy = {
   sections: ProjectSection[];
 };
 
+export type ProjectLinks = {
+  /** Leave empty to hide the "view live" link. */
+  demo?: string;
+  /** Leave empty to hide the repository link. */
+  repo?: string;
+};
+
 export type Project = {
   slug: string;
   year: string;
   stack: string[];
+  links: ProjectLinks;
   copy: Record<Locale, ProjectCopy>;
 };
 
+/**
+ * Real project data. Outcome sections describe what was delivered;
+ * no usage figures have been added because none are verified.
+ */
 export const projects: Project[] = [
   {
-    slug: "atlas",
+    slug: "profil-lab-ivss",
+    year: "2026",
+    stack: ["PHP 8", "PostgreSQL", "PDO", "Bootstrap 5"],
+    links: {
+      demo: "",
+      repo: "",
+    },
+    copy: {
+      en: {
+        title: "Web Profil & CMS Laboratorium IVSS",
+        role: "Project Manager, System Analyst & Software Engineer",
+        summary:
+          "A public profile site and an internal CMS for the Intelligent Vision and Smart System laboratory, sharing one database and three access levels.",
+        thesis:
+          "Two systems, one database. A public profile and an internal CMS must not grow into two versions of the truth.",
+        sections: [
+          {
+            heading: "Context",
+            paragraphs: [
+              "Built for Laboratorium Intelligent Vision and Smart System at Politeknik Negeri Malang. The laboratory needed a public profile — who works there, which facilities it runs, what it has been doing — and an internal CMS for the records behind that profile.",
+              "Both were delivered as one application on a single PostgreSQL schema, with three access levels: head of laboratory, lecturer, and student.",
+            ],
+          },
+          {
+            heading: "Scope",
+            paragraphs: [
+              "Module by module, the CMS covers the data the laboratory actually operates on.",
+            ],
+            list: [
+              "User management for the three roles",
+              "Facility inventory",
+              "Activity gallery",
+              "Dynamic profile pages managed from the CMS",
+            ],
+          },
+          {
+            heading: "Decisions",
+            paragraphs: [
+              "One database for both systems, instead of two applications. The tradeoff is a more delicate schema and permission model, because public and internal records sit next to each other; the gain is that a profile edited in the CMS is the same record the public site reads.",
+              "PHP 8 with PDO, no framework. Routing, validation, and authentication are written by hand. The tradeoff is more code to maintain and no framework conventions to lean on; the benefit is that every query and permission check is visible in the codebase.",
+              "Access control is modelled once for three roles and applied across every module, rather than being decided screen by screen. The tradeoff is a permission check inside each module; the benefit is that a role is defined in one place instead of being re-invented four times.",
+              "Profile content is managed through the CMS instead of being hardcoded into templates. The tradeoff is that the CMS needs validation and an editing flow; the benefit is that the laboratory can publish without a developer.",
+            ],
+          },
+          {
+            heading: "Outcome",
+            paragraphs: [
+              "Delivered with four working modules — users, facility inventory, activity gallery, and dynamic profile — behind a three-level access model. Updating the laboratory's public information no longer requires editing code.",
+            ],
+          },
+        ],
+      },
+      id: {
+        title: "Web Profil & CMS Laboratorium IVSS",
+        role: "Manajer Proyek, Analis Sistem & Software Engineer",
+        summary:
+          "Situs profil publik dan CMS internal untuk Laboratorium Intelligent Vision and Smart System, berbagi satu basis data dan tiga tingkat akses.",
+        thesis:
+          "Dua sistem, satu basis data. Situs profil dan CMS internal tidak boleh tumbuh menjadi dua versi kebenaran yang berbeda.",
+        sections: [
+          {
+            heading: "Konteks",
+            paragraphs: [
+              "Dibangun untuk Laboratorium Intelligent Vision and Smart System, Politeknik Negeri Malang. Laboratorium membutuhkan profil publik — siapa yang bekerja di sana, fasilitas apa yang dikelola, kegiatan apa yang sudah berjalan — sekaligus CMS internal untuk data di balik profil tersebut.",
+              "Keduanya diserahkan sebagai satu aplikasi di atas satu skema PostgreSQL, dengan tiga tingkat akses: Kepala Lab, Dosen, dan Mahasiswa.",
+            ],
+          },
+          {
+            heading: "Cakupan",
+            paragraphs: [
+              "Modul per modul, CMS menutup data yang benar-benar dioperasikan laboratorium.",
+            ],
+            list: [
+              "Manajemen pengguna untuk tiga peran",
+              "Inventori fasilitas laboratorium",
+              "Galeri kegiatan",
+              "Halaman profil dinamis yang dikelola dari CMS",
+            ],
+          },
+          {
+            heading: "Keputusan",
+            paragraphs: [
+              "Satu basis data untuk dua sistem, bukan dua aplikasi terpisah. Konsekuensinya skema dan model izin lebih rawan, karena data publik dan internal bersebelahan; manfaatnya, profil yang diubah di CMS adalah record yang sama dengan yang dibaca situs publik.",
+              "PHP 8 dengan PDO, tanpa framework. Routing, validasi, dan autentikasi ditulis manual. Konsekuensinya lebih banyak kode untuk dirawat dan tidak ada konvensi framework yang bisa diandalkan; manfaatnya, setiap query dan pemeriksaan izin terlihat di dalam kode.",
+              "Hak akses dimodelkan sekali untuk tiga peran lalu diterapkan di seluruh modul, bukan diputuskan layar per layar. Konsekuensinya ada pemeriksaan izin di dalam setiap modul; manfaatnya, sebuah peran didefinisikan di satu tempat dan tidak ditemukan ulang empat kali.",
+              "Konten profil dikelola lewat CMS, bukan ditulis mati di template. Konsekuensinya CMS butuh validasi dan alur penyuntingan; manfaatnya, laboratorium bisa menerbitkan tanpa menunggu developer.",
+            ],
+          },
+          {
+            heading: "Hasil",
+            paragraphs: [
+              "Diserahkan dengan empat modul yang berjalan — pengguna, inventori fasilitas, galeri kegiatan, dan profil dinamis — di balik model akses tiga tingkat. Memperbarui informasi publik laboratorium tidak lagi memerlukan perubahan kode.",
+            ],
+          },
+        ],
+      },
+    },
+  },
+  {
+    slug: "informasi-lomba",
     year: "2025",
-    stack: ["TypeScript", "React", "Tailwind", "Turborepo"],
-    copy: {
-      en: {
-        title: "Atlas",
-        role: "Design system",
-        summary:
-          "A component library rebuilt around tokens so three product teams could stop shipping three different buttons.",
-        thesis:
-          "The problem was not missing components. It was that every team had quietly forked the scale.",
-        sections: [
-          {
-            heading: "Context",
-            paragraphs: [
-              "Atlas started as a folder of 41 components with no shared spacing scale, no color names, and four different ways to express a border radius. Each product team had a local patch file.",
-              "The brief was to consolidate, but the real constraint was that no product team could pause feature work for a migration.",
-            ],
-          },
-          {
-            heading: "Constraints",
-            paragraphs: [
-              "Two weeks between releases, no dedicated design engineer, and a public API already consumed by eight repositories.",
-            ],
-            list: [
-              "Existing imports had to keep working for two minor versions.",
-              "Any visual change had to be reviewable in a single pull request.",
-              "No new runtime dependency was allowed.",
-            ],
-          },
-          {
-            heading: "Decisions",
-            paragraphs: [
-              "I kept the old component API and replaced only the internals, mapping every hardcoded value to a token in one pass. The tradeoff was a slower first migration: four weeks of parallel tokens instead of a clean rewrite.",
-              "The second decision was to delete rather than deprecate. Twenty-three components covered every real usage; the rest were duplicates with different names.",
-            ],
-          },
-          {
-            heading: "Outcome",
-            paragraphs: [
-              "Component count fell from 41 to 23, and the shared scale became the only way to express spacing or color. The first downstream team migrated in three days without touching product code.",
-            ],
-          },
-        ],
-      },
-      id: {
-        title: "Atlas",
-        role: "Design system",
-        summary:
-          "Pustaka komponen yang dibangun ulang di atas token, agar tiga tim produk berhenti mengirim tiga tombol yang berbeda.",
-        thesis:
-          "Masalahnya bukan komponen yang kurang. Masalahnya, setiap tim diam-diam menyalin skala dengan versinya sendiri.",
-        sections: [
-          {
-            heading: "Konteks",
-            paragraphs: [
-              "Atlas dimulai sebagai folder berisi 41 komponen tanpa skala spacing bersama, tanpa nama warna, dan dengan empat cara berbeda menuliskan border radius. Tiap tim produk punya file patch lokal.",
-              "Permintaannya adalah konsolidasi, tetapi batasan sebenarnya: tidak ada tim produk yang bisa berhenti mengerjakan fitur untuk migrasi.",
-            ],
-          },
-          {
-            heading: "Batasan",
-            paragraphs: [
-              "Rilis tiap dua minggu, tanpa design engineer khusus, dan API publik yang sudah dipakai delapan repositori.",
-            ],
-            list: [
-              "Import lama harus tetap berjalan selama dua versi minor.",
-              "Setiap perubahan visual harus bisa direview dalam satu pull request.",
-              "Tidak boleh menambah dependency runtime.",
-            ],
-          },
-          {
-            heading: "Keputusan",
-            paragraphs: [
-              "Saya mempertahankan API komponen lama dan hanya mengganti isinya, memetakan setiap nilai hardcoded ke token dalam satu proses. Konsekuensinya migrasi pertama lebih lambat: empat minggu token paralel, bukan penulisan ulang yang bersih.",
-              "Keputusan kedua adalah menghapus, bukan menandai deprecated. Dua puluh tiga komponen sudah menutup semua penggunaan nyata; sisanya duplikat dengan nama berbeda.",
-            ],
-          },
-          {
-            heading: "Hasil",
-            paragraphs: [
-              "Jumlah komponen turun dari 41 ke 23, dan skala bersama menjadi satu-satunya cara menuliskan spacing atau warna. Tim pertama bermigrasi dalam tiga hari tanpa mengubah kode produk.",
-            ],
-          },
-        ],
-      },
+    stack: ["Laravel 12", "Filament", "Sanctum", "MySQL"],
+    links: {
+      demo: "",
+      repo: "",
     },
-  },
-  {
-    slug: "signal",
-    year: "2024",
-    stack: ["Next.js", "Postgres", "WebSocket", "Playwright"],
     copy: {
       en: {
-        title: "Signal",
-        role: "Product engineering",
+        title: "Web Informasi Lomba Jurusan",
+        role: "Backend Developer & System Analyst",
         summary:
-          "An incident dashboard that had to stay readable during the exact minutes when nobody has time to read.",
+          "One platform for the department's competitions, scholarships, seminars, and educational articles — student interface, REST API, and a single admin panel.",
         thesis:
-          "A dashboard fails when it shows everything. The job was to decide what a tired person can ignore.",
+          "Academic information does not disappear because it is missing. It disappears because it is scattered across channels nobody owns.",
         sections: [
           {
             heading: "Context",
             paragraphs: [
-              "Signal aggregated alerts from four services into one screen. During real incidents, responders ignored the screen and went back to raw logs because the summary was slower to trust than the source.",
+              "A Project-Based Learning project for the department: one platform where students find and manage academic and non-academic opportunities — competitions, scholarships, seminars, and educational articles.",
+              "Three surfaces had to stay consistent with each other: the student interface, a REST API, and a central admin panel. Everything I designed sat between them — the schema, the endpoints, and the rules that decide what is published.",
             ],
           },
           {
-            heading: "Constraints",
+            heading: "Scope",
             paragraphs: [
-              "Page had to load in under two seconds on an unreliable office network, and the data source could not be changed.",
+              "The student side is not a notice board; it carries the data a student needs to act on an opportunity.",
             ],
             list: [
-              "No changes to the ingestion pipeline.",
-              "Every row had to link back to the original log line.",
-              "The layout had to work at 1280px, the width of the on-call laptop.",
+              "Bookmarks and interests, with likes and CV management on the profile",
+              "Feedback and collaborator registration",
+              "Competition data, participants, and scoring",
+              "Approval workflow for information and articles before publishing",
             ],
           },
           {
             heading: "Decisions",
             paragraphs: [
-              "I removed the timeline chart entirely and replaced it with a severity-ordered list. The tradeoff was losing historical shape, which responders were not using during an incident anyway.",
-              "Every summary line got a permanent source link, so trust did not depend on the interface being right. That link was the feature, not the export button.",
+              "I designed the relational schema and the entity flow first, mapping the relationships through Eloquent, then built the business logic in Laravel 12. API endpoints are protected with Sanctum instead of session authentication. The tradeoff is a more involved client flow — a token has to be stored and sent with every request — but the API no longer depends on a web session.",
+              "The admin panel runs on Filament rather than a hand-built interface. That gives up fine control over the admin UI; in exchange, approval states, role restrictions, and content tables were available in weeks, not months.",
+              "Nothing publishes itself. Information and articles move through an approval workflow before they appear, and that workflow lives in the admin panel rather than in the public interface. The tradeoff is a delay between writing and publishing — but a department page that announces an unverified scholarship deadline is worse than a slow one.",
             ],
           },
           {
             heading: "Outcome",
             paragraphs: [
-              "Median time to first acknowledged alert dropped from 4m10s to 1m50s across the next 30 incidents. The chart was never requested again.",
+              "Delivered as a working platform: a student-facing interface, a protected REST API, and an admin panel covering competitions, participants, scoring, and collaborator requests. The approval workflow is enforced where content is created, not where it is displayed.",
             ],
           },
         ],
       },
       id: {
-        title: "Signal",
-        role: "Product engineering",
+        title: "Web Informasi Lomba Jurusan",
+        role: "Backend Developer & Analis Sistem",
         summary:
-          "Dashboard insiden yang harus tetap terbaca justru pada menit-menit ketika tidak ada yang punya waktu membaca.",
+          "Satu platform untuk lomba, beasiswa, seminar, dan artikel edukatif jurusan — antarmuka mahasiswa, REST API, dan satu panel admin.",
         thesis:
-          "Dashboard gagal ketika menampilkan semuanya. Tugasnya adalah memutuskan apa yang boleh diabaikan orang yang sedang lelah.",
+          "Informasi akademik tidak hilang karena tidak ada. Ia hilang karena tersebar di kanal yang tidak dimiliki siapa pun.",
         sections: [
           {
             heading: "Konteks",
             paragraphs: [
-              "Signal menggabungkan alert dari empat layanan ke satu layar. Saat insiden nyata terjadi, responder justru mengabaikan layar itu dan kembali ke log mentah karena ringkasannya lebih lambat dipercaya daripada sumbernya.",
+              "Proyek Project-Based Learning untuk jurusan: satu platform tempat mahasiswa menemukan dan mengelola peluang akademik maupun non-akademik — lomba, beasiswa, seminar, dan artikel edukatif.",
+              "Tiga permukaan harus tetap konsisten: antarmuka mahasiswa, REST API, dan panel admin terpusat. Semua yang saya rancang berada di antara ketiganya — skema data, endpoint, dan aturan yang menentukan apa yang boleh terbit.",
             ],
           },
           {
-            heading: "Batasan",
+            heading: "Cakupan",
             paragraphs: [
-              "Halaman harus termuat di bawah dua detik pada jaringan kantor yang tidak stabil, dan sumber data tidak boleh diubah.",
+              "Sisi mahasiswa bukan papan pengumuman; ia membawa data yang dibutuhkan untuk benar-benar mengambil peluang.",
             ],
             list: [
-              "Tidak ada perubahan pada pipeline ingestion.",
-              "Setiap baris harus tertaut ke baris log aslinya.",
-              "Layout harus bekerja di 1280px, lebar laptop on-call.",
+              "Bookmark dan peminatan, dengan likes serta manajemen CV di profil",
+              "Umpan balik dan pengajuan pendaftaran kolaborator",
+              "Data lomba, peserta, dan penilaian",
+              "Alur persetujuan informasi dan artikel sebelum diterbitkan",
             ],
           },
           {
             heading: "Keputusan",
             paragraphs: [
-              "Saya menghapus grafik timeline sepenuhnya dan menggantinya dengan daftar terurut berdasarkan severity. Konsekuensinya kehilangan bentuk historis, yang memang tidak dipakai responder saat insiden berlangsung.",
-              "Setiap baris ringkasan mendapat tautan sumber permanen, sehingga kepercayaan tidak bergantung pada antarmuka yang selalu benar. Tautan itu fiturnya, bukan tombol export.",
+              "Saya merancang skema relasional dan alur relasi entitas lebih dulu, memetakan relasinya lewat Eloquent, lalu membangun logika bisnis di Laravel 12. Endpoint API dilindungi Sanctum, bukan autentikasi session. Konsekuensinya alur di sisi klien lebih panjang — token harus disimpan dan dikirim di setiap permintaan — tetapi API tidak lagi bergantung pada session web.",
+              "Panel admin memakai Filament, bukan antarmuka buatan sendiri. Kendali atas UI admin jadi lebih kecil; sebagai gantinya, status persetujuan, pembatasan peran, dan tabel konten siap dalam hitungan minggu, bukan bulan.",
+              "Tidak ada konten yang terbit sendiri. Informasi dan artikel melewati alur persetujuan sebelum tampil, dan alur itu berada di panel admin, bukan di antarmuka publik. Konsekuensinya ada jeda antara menulis dan menerbitkan — tetapi halaman jurusan yang mengumumkan tenggat beasiswa tanpa verifikasi lebih buruk daripada halaman yang lambat.",
             ],
           },
           {
             heading: "Hasil",
             paragraphs: [
-              "Median waktu sampai alert pertama diakui turun dari 4m10s menjadi 1m50s pada 30 insiden berikutnya. Grafik itu tidak pernah diminta lagi.",
-            ],
-          },
-        ],
-      },
-    },
-  },
-  {
-    slug: "margin",
-    year: "2023",
-    stack: ["Next.js", "MDX", "SQLite", "Vercel"],
-    copy: {
-      en: {
-        title: "Margin",
-        role: "Frontend",
-        summary:
-          "A reading and publishing tool for long essays, built around one rule: the text decides the layout, not the other way around.",
-        thesis:
-          "Most publishing tools optimise for the editor's dashboard. This one optimises for the third paragraph.",
-        sections: [
-          {
-            heading: "Context",
-            paragraphs: [
-              "Editors were pasting essays from documents into a CMS and then fighting the result: footnotes moved, pull quotes broke the reading column, and images never sat where the author intended.",
-            ],
-          },
-          {
-            heading: "Constraints",
-            paragraphs: [
-              "Writers wanted to work in Markdown, and the team could not maintain a custom editor on top of a CMS.",
-            ],
-            list: [
-              "Markdown had to remain the source of truth.",
-              "Footnotes and figure captions were required, not optional.",
-              "Reading time had to survive a slow connection.",
-            ],
-          },
-          {
-            heading: "Decisions",
-            paragraphs: [
-              "I treated the reading column as fixed and let elements opt out of it explicitly. Full-bleed images are a deliberate author choice, not a default.",
-              "Footnotes stayed inline at the end of each section instead of collapsing into a modal. The tradeoff is more scrolling; the benefit is that a reader never loses their place.",
-            ],
-          },
-          {
-            heading: "Outcome",
-            paragraphs: [
-              "Publishing time per essay fell from about 90 minutes of formatting to 12 minutes of writing and review. The reading column has not needed a layout change in two years.",
-            ],
-          },
-        ],
-      },
-      id: {
-        title: "Margin",
-        role: "Frontend",
-        summary:
-          "Alat baca dan terbit untuk esai panjang, dibangun dengan satu aturan: teks yang menentukan layout, bukan sebaliknya.",
-        thesis:
-          "Kebanyakan alat terbit mengoptimalkan dashboard editor. Yang ini mengoptimalkan paragraf ketiga.",
-        sections: [
-          {
-            heading: "Konteks",
-            paragraphs: [
-              "Editor menempelkan esai dari dokumen ke CMS lalu berkelahi dengan hasilnya: catatan kaki berpindah, pull quote merusak kolom baca, dan gambar tidak pernah berada di tempat penulis menginginkannya.",
-            ],
-          },
-          {
-            heading: "Batasan",
-            paragraphs: [
-              "Penulis ingin bekerja di Markdown, dan tim tidak bisa memelihara editor kustom di atas CMS.",
-            ],
-            list: [
-              "Markdown harus tetap menjadi sumber kebenaran.",
-              "Catatan kaki dan caption gambar wajib, bukan opsional.",
-              "Waktu baca harus tetap bertahan di koneksi lambat.",
-            ],
-          },
-          {
-            heading: "Keputusan",
-            paragraphs: [
-              "Saya memperlakukan kolom baca sebagai tetap dan membiarkan elemen keluar darinya secara eksplisit. Gambar full-bleed adalah pilihan sadar penulis, bukan default.",
-              "Catatan kaki tetap inline di akhir setiap bagian, tidak dilipat ke modal. Konsekuensinya lebih banyak scroll; manfaatnya pembaca tidak pernah kehilangan posisi.",
-            ],
-          },
-          {
-            heading: "Hasil",
-            paragraphs: [
-              "Waktu terbit per esai turun dari sekitar 90 menit pemformatan menjadi 12 menit menulis dan review. Kolom baca belum perlu diubah selama dua tahun.",
+              "Diserahkan sebagai platform yang berjalan: antarmuka mahasiswa, REST API terproteksi, dan panel admin yang menangani data lomba, peserta, penilaian, serta pengajuan kolaborator. Alur persetujuan ditegakkan di tempat konten dibuat, bukan di tempat konten ditampilkan.",
             ],
           },
         ],
@@ -298,6 +237,7 @@ export function getProjects(locale: Locale) {
     slug: project.slug,
     year: project.year,
     stack: project.stack,
+    links: project.links,
     copy: project.copy[locale],
   }));
 }
@@ -310,6 +250,7 @@ export function getProject(locale: Locale, slug: string) {
     slug: project.slug,
     year: project.year,
     stack: project.stack,
+    links: project.links,
     copy: project.copy[locale],
   };
 }

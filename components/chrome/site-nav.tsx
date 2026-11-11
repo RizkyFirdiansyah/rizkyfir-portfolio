@@ -7,6 +7,7 @@ import { localeLabels, locales, type Locale } from "@/lib/i18n/locales";
 type NavLabels = {
   work: string;
   about: string;
+  resume: string;
   contact: string;
 };
 
@@ -32,6 +33,11 @@ export function SiteNav({
   const items = [
     { key: "work" as const, href: `/${locale}/work`, label: labels.work },
     { key: "about" as const, href: `/${locale}/about`, label: labels.about },
+    {
+      key: "resume" as const,
+      href: `/${locale}/resume`,
+      label: labels.resume,
+    },
     {
       key: "contact" as const,
       href: `/${locale}/contact`,
