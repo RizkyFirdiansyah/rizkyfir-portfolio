@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Figure } from "@/components/media/figure";
 import { ArrowUpRightIcon } from "@/components/ui/icons";
+import { figures } from "@/content/media";
 import { getProject, projects } from "@/content/projects";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
@@ -47,6 +49,11 @@ export default async function CaseStudyPage({
   const project = getProject(locale, slug);
 
   if (!project) notFound();
+
+  const projectFigures =
+    project.slug === "profil-lab-ivss"
+      ? [figures.ivssSchema, figures.ivssModules]
+      : [figures.lombaFlow, figures.lombaApproval];
 
   return (
     <article className="mx-auto max-w-page px-4 py-16 md:px-6 md:py-24">
@@ -111,6 +118,17 @@ export default async function CaseStudyPage({
           ) : null}
         </div>
       ) : null}
+
+      <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-6">
+        {projectFigures.map((figure) => (
+          <Figure
+            key={figure.src}
+            figure={figure}
+            locale={locale}
+            sizes="(min-width: 768px) 50vw, 100vw"
+          />
+        ))}
+      </div>
 
       <div className="mt-16 grid grid-cols-12 gap-4 md:gap-6">
         <div className="col-span-12 md:col-span-7">

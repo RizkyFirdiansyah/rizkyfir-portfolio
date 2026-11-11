@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
+import { Figure } from "@/components/media/figure";
+import { figures } from "@/content/media";
 import { skillGroups } from "@/content/resume";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
@@ -28,8 +30,17 @@ export default async function AboutPage() {
         intro={dictionary.about.intro}
       />
 
-      <div className="mt-16 grid grid-cols-12 gap-4 border-t border-rule pt-12 md:gap-6">
-        <div className="col-span-12 md:col-span-7">
+      <div className="mt-14 grid grid-cols-12 gap-4 border-t border-rule pt-10 md:gap-6 md:pt-12">
+        <div className="col-span-12 md:col-span-4">
+          <Figure
+            figure={figures.portrait}
+            locale={locale}
+            sizes="(min-width: 768px) 33vw, 100vw"
+            className="md:sticky md:top-6"
+          />
+        </div>
+
+        <div className="col-span-12 md:col-span-7 md:col-start-6">
           {dictionary.about.paragraphs.map((paragraph) => (
             <p
               key={paragraph.slice(0, 24)}
@@ -47,31 +58,38 @@ export default async function AboutPage() {
               {dictionary.about.resumeLink}
             </Link>
           </p>
+
+          <Figure
+            figure={figures.eventRunsheet}
+            locale={locale}
+            sizes="(min-width: 768px) 58vw, 100vw"
+            className="mt-12"
+          />
         </div>
-
-        <aside className="col-span-12 mt-12 md:col-span-4 md:col-start-9 md:mt-0">
-          <h2 className="font-mono text-meta text-muted uppercase">
-            {dictionary.about.skillsTitle}
-          </h2>
-
-          <div className="mt-4 border-t border-rule">
-            {skillGroups.map((group) => (
-              <div key={group.label.en} className="border-b border-rule py-4">
-                <h3 className="font-mono text-meta text-ink uppercase">
-                  {group.label[locale]}
-                </h3>
-                <ul className="mt-2 space-y-1">
-                  {group.items.map((item) => (
-                    <li key={item} className="text-body text-muted">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </aside>
       </div>
+
+      <section className="mt-16 border-t border-rule pt-10">
+        <h2 className="font-mono text-meta text-muted uppercase">
+          {dictionary.about.skillsTitle}
+        </h2>
+
+        <div className="mt-6 grid gap-8 md:grid-cols-3 md:gap-6">
+          {skillGroups.map((group) => (
+            <div key={group.label.en} className="border-t border-ink pt-4">
+              <h3 className="font-mono text-meta text-ink uppercase">
+                {group.label[locale]}
+              </h3>
+              <ul className="mt-3 space-y-1">
+                {group.items.map((item) => (
+                  <li key={item} className="text-body text-muted">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
+import { Figure } from "@/components/media/figure";
 import { ProjectIndex } from "@/components/work/project-index";
+import { figures } from "@/content/media";
 import { getProjects } from "@/content/projects";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
@@ -32,17 +34,32 @@ export default async function WorkPage() {
       {items.length === 0 ? (
         <p className="mt-16 text-body text-muted">{dictionary.work.empty}</p>
       ) : (
-        <div className="mt-16">
-          <ProjectIndex
-            locale={locale}
-            items={items.map((project) => ({
-              slug: project.slug,
-              year: project.year,
-              title: project.copy.title,
-              role: project.copy.role,
-            }))}
-          />
-        </div>
+        <>
+          <div className="mt-14 grid grid-cols-1 gap-10 border-t border-rule pt-10 md:grid-cols-2 md:gap-6">
+            <Figure
+              figure={figures.ivssModules}
+              locale={locale}
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+            <Figure
+              figure={figures.lombaFlow}
+              locale={locale}
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          </div>
+
+          <div className="mt-16">
+            <ProjectIndex
+              locale={locale}
+              items={items.map((project) => ({
+                slug: project.slug,
+                year: project.year,
+                title: project.copy.title,
+                role: project.copy.role,
+              }))}
+            />
+          </div>
+        </>
       )}
     </div>
   );
