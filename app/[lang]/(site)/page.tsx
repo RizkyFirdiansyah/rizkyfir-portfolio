@@ -42,7 +42,7 @@ export default async function HomePage() {
           </h2>
           <Link
             href={`/${locale}/work`}
-            className="font-mono text-meta text-muted uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+            className="link-slide font-mono text-meta text-muted uppercase transition-colors duration-(--duration-quick) hover:text-signal"
           >
             {dictionary.home.allWork}
           </Link>
@@ -70,7 +70,7 @@ export default async function HomePage() {
           <p className="mt-6">
             <Link
               href={`/${locale}/about`}
-              className="font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+              className="link-slide font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
             >
               {dictionary.home.aboutLink}
             </Link>

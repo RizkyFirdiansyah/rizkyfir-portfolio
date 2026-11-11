@@ -33,9 +33,10 @@ export function ProjectIndex({ locale, items }: ProjectIndexProps) {
             </span>
             <span
               aria-hidden
-              className="hidden font-mono text-meta transition-transform duration-(--duration-fast) ease-smooth-out group-hover:translate-x-1 md:col-span-1 md:block md:text-right"
+              className="link-icon-swap hidden font-mono text-meta md:col-span-1 md:inline-grid"
             >
-              →
+              <span>→</span>
+              <span>⟶</span>
             </span>
           </Link>
         </li>

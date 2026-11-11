@@ -57,9 +57,9 @@ export function SiteNav({
               key={item.key}
               href={item.href}
               aria-current={active ? "page" : undefined}
-              className={`inline-flex min-h-6 items-center py-1 font-mono text-meta uppercase underline-offset-4 transition-colors duration-(--duration-quick) ${
+              className={`link-slide inline-flex min-h-6 items-center font-mono text-meta uppercase transition-colors duration-(--duration-quick) ${
                 active
-                  ? "text-signal underline decoration-1"
+                  ? "text-signal"
                   : "text-muted hover:text-ink"
               }`}
             >

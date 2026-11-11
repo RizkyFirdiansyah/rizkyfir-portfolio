@@ -59,6 +59,9 @@
   --distance-base: 8px;
   --distance-medium: 12px;
   --distance-large: 30px;
+
+  --blur-small: 2px;
+  --scale-swap: 0.25;
 }
 
 @layer base {
@@ -85,6 +88,83 @@
 
   hr {
     border-color: var(--color-rule);
+  }
+}
+
+@layer components {
+  /*
+   * Motion pattern 1 — link underline slide, 150ms.
+   * A rule-coloured line sits at rest; the signal line scales in from the
+   * left on hover and focus. aria-current keeps it open for the active nav item.
+   */
+  .link-slide {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    padding-block-end: var(--distance-micro);
+  }
+
+  .link-slide::before,
+  .link-slide::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 1px;
+  }
+
+  .link-slide::before {
+    background-color: var(--color-rule);
+  }
+
+  .link-slide::after {
+    background-color: var(--color-signal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-quick) var(--ease-smooth-out);
+  }
+
+  .link-slide:hover::after,
+  .link-slide:focus-visible::after,
+  .link-slide[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  /*
+   * Motion pattern 2 — icon swap on the project index arrow, 250ms.
+   * Two glyphs share one grid cell; the outgoing one blurs and shrinks.
+   */
+  .link-icon-swap {
+    display: inline-grid;
+    justify-items: end;
+  }
+
+  .link-icon-swap > span {
+    grid-area: 1 / 1;
+    transition:
+      opacity var(--duration-fast) var(--ease-in-out),
+      filter var(--duration-fast) var(--ease-in-out),
+      transform var(--duration-fast) var(--ease-in-out);
+  }
+
+  .link-icon-swap > span:last-child {
+    opacity: 0;
+    filter: blur(var(--blur-small));
+    transform: scale(var(--scale-swap));
+  }
+
+  .group:hover .link-icon-swap > span:first-child,
+  .group:focus-visible .link-icon-swap > span:first-child {
+    opacity: 0;
+    filter: blur(var(--blur-small));
+    transform: scale(var(--scale-swap));
+  }
+
+  .group:hover .link-icon-swap > span:last-child,
+  .group:focus-visible .link-icon-swap > span:last-child {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
   }
 }
 

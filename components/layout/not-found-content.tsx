@@ -22,7 +22,7 @@ export async function NotFoundContent({ locale }: NotFoundContentProps) {
       </p>
       <Link
         href={`/${locale}`}
-        className="mt-8 font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+        className="link-slide mt-8 font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
       >
         {dictionary.notFound.back}
       </Link>

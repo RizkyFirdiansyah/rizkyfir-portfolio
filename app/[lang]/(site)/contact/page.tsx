@@ -42,7 +42,7 @@ export default async function ContactPage() {
           <p className="mt-6">
             <Link
               href={`/${locale}/resume`}
-              className="font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+              className="link-slide font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
             >
               {dictionary.about.resumeLink}
             </Link>

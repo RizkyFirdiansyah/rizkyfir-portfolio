@@ -52,7 +52,7 @@ export default async function CaseStudyPage({
     <article className="mx-auto max-w-page px-4 py-16 md:px-6 md:py-24">
       <Link
         href={`/${locale}/work`}
-        className="font-mono text-meta text-muted uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+        className="link-slide font-mono text-meta text-muted uppercase transition-colors duration-(--duration-quick) hover:text-signal"
       >
         ← {dictionary.caseStudy.back}
       </Link>
@@ -94,7 +94,7 @@ export default async function CaseStudyPage({
           {project.links.demo ? (
             <a
               href={project.links.demo}
-              className="inline-flex items-center gap-1 font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+              className="link-slide inline-flex items-center gap-1 font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
             >
               {dictionary.caseStudy.demo}
               <ArrowUpRightIcon width={14} height={14} />
@@ -103,7 +103,7 @@ export default async function CaseStudyPage({
           {project.links.repo ? (
             <a
               href={project.links.repo}
-              className="inline-flex items-center gap-1 font-mono text-meta uppercase underline decoration-rule decoration-1 underline-offset-4 transition-colors duration-(--duration-quick) hover:text-signal hover:decoration-signal"
+              className="link-slide inline-flex items-center gap-1 font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
             >
               {dictionary.caseStudy.repo}
               <ArrowUpRightIcon width={14} height={14} />
