@@ -97,23 +97,22 @@ const dictionaries: Record<Locale, Dictionary> = {
       skipToContent: "Skip to content",
     },
     home: {
-      tagline:
-        "I build web backends and work with data. I also coordinate weddings, where the deadline is not negotiable.",
-      lede: "Currently studying D-IV Teknik Informatika at Politeknik Negeri Malang. Most of my work is Laravel and PostgreSQL on the server, plain HTML and CSS in the browser, and Python when there is data to make sense of.",
+      tagline: "Backends for lab systems, and weddings that cannot run late.",
+      lede: "I am in my final year of D-IV Teknik Informatika at Politeknik Negeri Malang. Most days that means Laravel and PHP on the server, plain HTML and CSS in the browser, and Python when a dataset needs an answer.",
       selected: "Selected work",
       allWork: "All work",
       aboutTitle: "About",
       aboutTeaser:
-        "Backend work, data, and event coordination are the same job from different angles: holding a plan together when other people depend on it.",
+        "During the week I work on schemas and endpoints. Outside campus I am the person with the runsheet, checking that the caterer arrived before the guests.",
       aboutLink: "More about me",
       contactTitle: "Contact",
-      contactTeaser: "Email, phone, or LinkedIn — pick whichever you check.",
+      contactTeaser: "Email, phone, or LinkedIn. Pick the one you actually check.",
     },
     work: {
       eyebrow: "Work",
       title: "Selected work",
       intro:
-        "Two projects, described by the constraints they had and the decisions they forced: a department opportunity platform, and a laboratory profile with its own CMS.",
+        "Two systems I built end to end: a laboratory profile with its own CMS, and a department platform for competitions, scholarships, and articles.",
       empty: "No projects published yet.",
     },
     caseStudy: {
@@ -132,7 +131,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       paragraphs: [
         "Most of my work is backend: relational schemas, REST APIs, access rules, and the approval flows that decide when something is allowed to appear. I like the part where a data model has to survive contact with real users — a bookmark that must be unique, a role that must not see a menu, a deadline that must be verified before it is published.",
         "The coordination work is not a detour. Running an event means holding a schedule with other people, where a missed detail is visible immediately and cannot be patched after deployment. It taught me to write things down, to confirm before assuming, and to keep a plan simple enough that a tired person can follow it at six in the morning.",
-        "I document while building, not afterwards. If a decision cannot be explained in two sentences, it usually means the decision is not finished.",
+        "On both projects I wrote the schema and the access rules first. Those are the parts that are expensive to change once people start using them.",
       ],
       skillsTitle: "Skills",
       resumeLink: "Education, experience, and certifications",
@@ -186,23 +185,22 @@ const dictionaries: Record<Locale, Dictionary> = {
       skipToContent: "Lewati ke konten",
     },
     home: {
-      tagline:
-        "Saya membangun backend web dan mengolah data. Saya juga mengoordinasikan pernikahan, tempat tenggat tidak bisa ditawar.",
-      lede: "Sedang menempuh D-IV Teknik Informatika di Politeknik Negeri Malang. Sebagian besar pekerjaan saya adalah Laravel dan PostgreSQL di server, HTML dan CSS di browser, dan Python ketika ada data yang perlu dipahami.",
+      tagline: "Backend untuk sistem laboratorium, dan pernikahan yang tak boleh molor.",
+      lede: "Saya sedang menempuh tahun terakhir D-IV Teknik Informatika di Politeknik Negeri Malang. Sebagian besar harinya Laravel dan PHP di server, HTML dan CSS biasa di browser, dan Python saat sebuah dataset butuh jawaban.",
       selected: "Karya pilihan",
       allWork: "Semua karya",
       aboutTitle: "Tentang",
       aboutTeaser:
-        "Backend, data, dan koordinasi acara adalah pekerjaan yang sama dari sudut berbeda: menjaga rencana tetap utuh ketika orang lain bergantung padanya.",
+        "Di hari kerja saya mengurus skema dan endpoint. Di luar kampus saya orang yang memegang runsheet, memastikan katering datang sebelum tamu.",
       aboutLink: "Selengkapnya tentang saya",
       contactTitle: "Kontak",
-      contactTeaser: "Email, telepon, atau LinkedIn — pilih yang paling sering Anda buka.",
+      contactTeaser: "Email, telepon, atau LinkedIn. Pilih yang benar-benar Anda buka.",
     },
     work: {
       eyebrow: "Karya",
       title: "Karya pilihan",
       intro:
-        "Dua proyek, dijelaskan lewat batasan yang dihadapi dan keputusan yang harus diambil: platform peluang jurusan, dan profil laboratorium dengan CMS-nya sendiri.",
+        "Dua sistem yang saya bangun dari awal sampai rilis: profil laboratorium dengan CMS-nya, dan platform jurusan untuk lomba, beasiswa, serta artikel.",
       empty: "Belum ada proyek yang diterbitkan.",
     },
     caseStudy: {
@@ -221,7 +219,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       paragraphs: [
         "Sebagian besar pekerjaan saya ada di backend: skema relasional, REST API, aturan akses, dan alur persetujuan yang menentukan kapan sesuatu boleh tampil. Saya menyukai bagian ketika model data harus bertahan saat bertemu pengguna nyata — bookmark yang tidak boleh ganda, peran yang tidak boleh melihat menu tertentu, tenggat yang harus diverifikasi sebelum terbit.",
         "Kerja koordinasi bukan pengalihan. Menjalankan acara berarti memegang jadwal bersama orang lain, tempat detail yang terlewat langsung terlihat dan tidak bisa ditambal setelah rilis. Dari situ saya belajar mencatat, memastikan sebelum menganggap, dan menjaga rencana cukup sederhana agar orang yang lelah pukul enam pagi masih bisa mengikutinya.",
-        "Saya menulis dokumentasi sambil membangun, bukan setelahnya. Kalau sebuah keputusan tidak bisa dijelaskan dalam dua kalimat, biasanya keputusan itu belum selesai.",
+        "Di kedua proyek saya menulis skema dan aturan akses lebih dulu. Itu bagian yang paling mahal diubah setelah orang mulai memakainya.",
       ],
       skillsTitle: "Keahlian",
       resumeLink: "Pendidikan, pengalaman, dan sertifikasi",

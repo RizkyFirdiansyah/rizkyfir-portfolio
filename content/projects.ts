@@ -73,10 +73,10 @@ export const projects: Project[] = [
           {
             heading: "Decisions",
             paragraphs: [
-              "One database for both systems, instead of two applications. The tradeoff is a more delicate schema and permission model, because public and internal records sit next to each other; the gain is that a profile edited in the CMS is the same record the public site reads.",
-              "PHP 8 with PDO, no framework. Routing, validation, and authentication are written by hand. The tradeoff is more code to maintain and no framework conventions to lean on; the benefit is that every query and permission check is visible in the codebase.",
-              "Access control is modelled once for three roles and applied across every module, rather than being decided screen by screen. The tradeoff is a permission check inside each module; the benefit is that a role is defined in one place instead of being re-invented four times.",
-              "Profile content is managed through the CMS instead of being hardcoded into templates. The tradeoff is that the CMS needs validation and an editing flow; the benefit is that the laboratory can publish without a developer.",
+              "Both systems share one PostgreSQL schema. Two separate applications would have been easier to reason about, but then a profile edited in the CMS and the profile the public reads could drift apart. One schema means the permission model has to be careful, because internal and public records sit in the same tables.",
+              "There is no framework. PHP 8 handles routing, validation, and authentication directly, and every query is visible in the code. Maintainers lose the conventions Laravel would have supplied, and get a codebase where nothing happens off-screen.",
+              "Roles were modelled once and then applied across every module. Each module carries its own check, but a role is defined in one place instead of being re-invented four times.",
+              "Profile pages are content, not templates. The CMS validates and stores them, and the laboratory publishes without opening a code editor.",
             ],
           },
           {
@@ -117,10 +117,10 @@ export const projects: Project[] = [
           {
             heading: "Keputusan",
             paragraphs: [
-              "Satu basis data untuk dua sistem, bukan dua aplikasi terpisah. Konsekuensinya skema dan model izin lebih rawan, karena data publik dan internal bersebelahan; manfaatnya, profil yang diubah di CMS adalah record yang sama dengan yang dibaca situs publik.",
-              "PHP 8 dengan PDO, tanpa framework. Routing, validasi, dan autentikasi ditulis manual. Konsekuensinya lebih banyak kode untuk dirawat dan tidak ada konvensi framework yang bisa diandalkan; manfaatnya, setiap query dan pemeriksaan izin terlihat di dalam kode.",
-              "Hak akses dimodelkan sekali untuk tiga peran lalu diterapkan di seluruh modul, bukan diputuskan layar per layar. Konsekuensinya ada pemeriksaan izin di dalam setiap modul; manfaatnya, sebuah peran didefinisikan di satu tempat dan tidak ditemukan ulang empat kali.",
-              "Konten profil dikelola lewat CMS, bukan ditulis mati di template. Konsekuensinya CMS butuh validasi dan alur penyuntingan; manfaatnya, laboratorium bisa menerbitkan tanpa menunggu developer.",
+              "Kedua sistem berbagi satu skema PostgreSQL. Dua aplikasi terpisah lebih mudah dinalar, tetapi profil yang diubah di CMS dan profil yang dibaca publik bisa berbeda. Dengan satu skema, model izin harus lebih hati-hati karena data internal dan publik duduk di tabel yang sama.",
+              "Tidak ada framework. PHP 8 menangani routing, validasi, dan autentikasi langsung, dan setiap query terlihat di kode. Perawatnya kehilangan konvensi yang biasanya diberikan Laravel, dan mendapat kode yang tidak menyembunyikan apa pun.",
+              "Peran dimodelkan sekali lalu diterapkan di seluruh modul. Setiap modul membawa pemeriksaan izinnya sendiri, tetapi sebuah peran didefinisikan di satu tempat, bukan ditemukan ulang empat kali.",
+              "Halaman profil adalah konten, bukan template. CMS memvalidasi dan menyimpannya, dan laboratorium bisa menerbitkan tanpa membuka editor kode.",
             ],
           },
           {
@@ -172,9 +172,9 @@ export const projects: Project[] = [
           {
             heading: "Decisions",
             paragraphs: [
-              "I designed the relational schema and the entity flow first, mapping the relationships through Eloquent, then built the business logic in Laravel 12. API endpoints are protected with Sanctum instead of session authentication. The tradeoff is a more involved client flow — a token has to be stored and sent with every request — but the API no longer depends on a web session.",
-              "The admin panel runs on Filament rather than a hand-built interface. That gives up fine control over the admin UI; in exchange, approval states, role restrictions, and content tables were available in weeks, not months.",
-              "Nothing publishes itself. Information and articles move through an approval workflow before they appear, and that workflow lives in the admin panel rather than in the public interface. The tradeoff is a delay between writing and publishing — but a department page that announces an unverified scholarship deadline is worse than a slow one.",
+              "The schema came first: competitions, participants, scores, bookmarks, articles, and the relations between them, mapped in Eloquent before any screen existed. Sanctum protects the API instead of sessions, which makes the client flow longer because a token has to be stored and sent, and removes the API's dependence on a browser session.",
+              "The admin panel runs on Filament. I gave up fine control over that interface and got approval states, role restrictions, and content tables in weeks.",
+              "Nothing publishes itself. Articles and information move through a review step that lives in the admin panel, so there is a delay between writing and publishing. A department page that announces an unverified scholarship deadline is worse than a page that waits.",
             ],
           },
           {
@@ -215,9 +215,9 @@ export const projects: Project[] = [
           {
             heading: "Keputusan",
             paragraphs: [
-              "Saya merancang skema relasional dan alur relasi entitas lebih dulu, memetakan relasinya lewat Eloquent, lalu membangun logika bisnis di Laravel 12. Endpoint API dilindungi Sanctum, bukan autentikasi session. Konsekuensinya alur di sisi klien lebih panjang — token harus disimpan dan dikirim di setiap permintaan — tetapi API tidak lagi bergantung pada session web.",
-              "Panel admin memakai Filament, bukan antarmuka buatan sendiri. Kendali atas UI admin jadi lebih kecil; sebagai gantinya, status persetujuan, pembatasan peran, dan tabel konten siap dalam hitungan minggu, bukan bulan.",
-              "Tidak ada konten yang terbit sendiri. Informasi dan artikel melewati alur persetujuan sebelum tampil, dan alur itu berada di panel admin, bukan di antarmuka publik. Konsekuensinya ada jeda antara menulis dan menerbitkan — tetapi halaman jurusan yang mengumumkan tenggat beasiswa tanpa verifikasi lebih buruk daripada halaman yang lambat.",
+              "Skema datang lebih dulu: lomba, peserta, penilaian, bookmark, artikel, dan relasi di antaranya, dipetakan lewat Eloquent sebelum satu layar pun ada. Sanctum menjaga API, bukan session, sehingga alur klien lebih panjang karena token harus disimpan dan dikirim, tetapi API tidak lagi bergantung pada session browser.",
+              "Panel admin memakai Filament. Kendali halus atas antarmuka itu saya lepaskan, dan sebagai gantinya status persetujuan, pembatasan peran, serta tabel konten siap dalam hitungan minggu.",
+              "Tidak ada konten yang terbit sendiri. Artikel dan informasi melewati tahap peninjauan di panel admin, jadi ada jeda antara menulis dan menerbitkan. Halaman jurusan yang mengumumkan tenggat beasiswa tanpa verifikasi lebih buruk daripada halaman yang menunggu.",
             ],
           },
           {
