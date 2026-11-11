@@ -57,7 +57,7 @@ export function SiteNav({
               key={item.key}
               href={item.href}
               aria-current={active ? "page" : undefined}
-              className={`font-mono text-meta uppercase underline-offset-4 transition-colors duration-(--duration-quick) ${
+              className={`inline-flex min-h-6 items-center py-1 font-mono text-meta uppercase underline-offset-4 transition-colors duration-(--duration-quick) ${
                 active
                   ? "text-signal underline decoration-1"
                   : "text-muted hover:text-ink"
@@ -78,7 +78,7 @@ export function SiteNav({
             href={otherHref(item)}
             hrefLang={item}
             aria-current={item === locale ? "true" : undefined}
-            className={`font-mono text-meta transition-colors duration-(--duration-quick) ${
+            className={`inline-flex min-h-6 items-center py-1 font-mono text-meta transition-colors duration-(--duration-quick) ${
               item === locale ? "text-ink" : "text-muted hover:text-ink"
             }`}
           >

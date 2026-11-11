@@ -13,6 +13,7 @@ export type Dictionary = {
   a11y: {
     primaryNav: string;
     languageSwitcher: string;
+    skipToContent: string;
   };
   home: {
     tagline: string;
@@ -93,6 +94,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     a11y: {
       primaryNav: "Primary",
       languageSwitcher: "Language",
+      skipToContent: "Skip to content",
     },
     home: {
       tagline:
@@ -181,6 +183,7 @@ const dictionaries: Record<Locale, Dictionary> = {
     a11y: {
       primaryNav: "Utama",
       languageSwitcher: "Bahasa",
+      skipToContent: "Lewati ke konten",
     },
     home: {
       tagline:
