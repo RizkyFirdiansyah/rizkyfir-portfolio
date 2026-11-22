@@ -25,18 +25,25 @@ export type Dictionary = {
     aboutLink: string;
     contactTitle: string;
     contactTeaser: string;
+    meta: {
+      role: string;
+      practice: string;
+      base: string;
+    };
   };
   work: {
     eyebrow: string;
     title: string;
     intro: string;
     empty: string;
+    viewCase: string;
   };
   caseStudy: {
     back: string;
     role: string;
     year: string;
     stack: string;
+    overview: string;
     demo: string;
     repo: string;
   };
@@ -55,6 +62,9 @@ export type Dictionary = {
     download: string;
     education: string;
     experience: string;
+    experienceAcademic: string;
+    experienceOrganisation: string;
+    skills: string;
     certifications: string;
     awards: string;
   };
@@ -83,7 +93,7 @@ const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
       description:
-        "Software developer and data analyst in Malang. Laravel, PostgreSQL, and Python, with a parallel practice coordinating events and weddings.",
+        "Software developer in Malang. Laravel, PostgreSQL, and Python, with a parallel practice coordinating events and weddings.",
     },
     nav: {
       work: "Work",
@@ -98,28 +108,35 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     home: {
       tagline: "Backends for lab systems, and weddings that cannot run late.",
-      lede: "I am in my final year of D-IV Teknik Informatika at Politeknik Negeri Malang. Most days that means Laravel and PHP on the server, plain HTML and CSS in the browser, and Python when a dataset needs an answer.",
+      lede: "Information technology student at Politeknik Negeri Malang. I design relational schemas and clean APIs in Laravel, ship straightforward frontends, and build Python pipelines when a model has to read real data.",
       selected: "Selected work",
       allWork: "All work",
       aboutTitle: "About",
       aboutTeaser:
-        "During the week I work on schemas and endpoints. Outside campus I am the person with the runsheet, checking that the caterer arrived before the guests.",
+        "In engineering, I build backend logic and verify access rules before deployment. In live events, I manage the runsheet where missing a minute is not an option. Both require the same discipline: verify every detail before the real users arrive.",
       aboutLink: "More about me",
       contactTitle: "Contact",
       contactTeaser: "Email, phone, or LinkedIn. Pick the one you actually check.",
+      meta: {
+        role: "Role",
+        practice: "Practice",
+        base: "Base",
+      },
     },
     work: {
       eyebrow: "Work",
       title: "Selected work",
       intro:
-        "Two systems I built end to end: a laboratory profile with its own CMS, and a department platform for competitions, scholarships, and articles.",
+        "Three systems I built end to end: a laboratory profile with its own CMS, a department platform for competitions, scholarships, and articles, and a model that reads packaging to match skin types.",
       empty: "No projects published yet.",
+      viewCase: "Read case study",
     },
     caseStudy: {
       back: "All work",
       role: "Role",
-      year: "Year",
+      year: "Period",
       stack: "Stack",
+      overview: "Overview",
       demo: "View live",
       repo: "Repository",
     },
@@ -131,7 +148,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       paragraphs: [
         "Most of my work is backend: relational schemas, REST APIs, access rules, and the approval flows that decide when something is allowed to appear. I like the part where a data model has to survive contact with real users — a bookmark that must be unique, a role that must not see a menu, a deadline that must be verified before it is published.",
         "The coordination work is not a detour. Running an event means holding a schedule with other people, where a missed detail is visible immediately and cannot be patched after deployment. It taught me to write things down, to confirm before assuming, and to keep a plan simple enough that a tired person can follow it at six in the morning.",
-        "On both projects I wrote the schema and the access rules first. Those are the parts that are expensive to change once people start using them.",
+        "On every project I wrote the schema and the access rules first. Those are the parts that are expensive to change once people start using them.",
       ],
       skillsTitle: "Skills",
       resumeLink: "Education, experience, and certifications",
@@ -141,9 +158,12 @@ const dictionaries: Record<Locale, Dictionary> = {
       title: "Record",
       intro:
         "Education, work, certifications, and one award. The PDF version is the same record, formatted for printing.",
-      download: "Download CV",
+      download: "Download CV (PDF, 2 Pages)",
       education: "Education",
       experience: "Experience",
+      experienceAcademic: "Internships, academic & research",
+      experienceOrganisation: "Organisation & committees",
+      skills: "Skills",
       certifications: "Certifications",
       awards: "Award",
     },
@@ -171,7 +191,7 @@ const dictionaries: Record<Locale, Dictionary> = {
   id: {
     meta: {
       description:
-        "Software developer dan data analyst di Malang. Laravel, PostgreSQL, dan Python, dengan kegiatan paralel mengoordinasikan acara dan pernikahan.",
+        "Software developer di Malang. Laravel, PostgreSQL, dan Python, dengan kegiatan paralel mengoordinasikan acara dan pernikahan.",
     },
     nav: {
       work: "Karya",
@@ -186,28 +206,35 @@ const dictionaries: Record<Locale, Dictionary> = {
     },
     home: {
       tagline: "Backend untuk sistem laboratorium, dan pernikahan yang tak boleh molor.",
-      lede: "Saya sedang menempuh tahun terakhir D-IV Teknik Informatika di Politeknik Negeri Malang. Sebagian besar harinya Laravel dan PHP di server, HTML dan CSS biasa di browser, dan Python saat sebuah dataset butuh jawaban.",
+      lede: "Mahasiswa D-IV Teknik Informatika Politeknik Negeri Malang. Saya merancang skema relasional dan REST API di Laravel, antarmuka web yang efisien, serta menyusun pipeline Python saat model harus membaca data nyata.",
       selected: "Karya pilihan",
       allWork: "Semua karya",
       aboutTitle: "Tentang",
       aboutTeaser:
-        "Di hari kerja saya mengurus skema dan endpoint. Di luar kampus saya orang yang memegang runsheet, memastikan katering datang sebelum tamu.",
+        "Di software, saya merancang skema dan aturan akses yang tahan uji sebelum rilis. Di lapangan, saya memegang runsheet acara di mana jadwal tidak boleh meleset sedetik pun. Keduanya butuh disiplin yang sama: pastikan semua detail beres sebelum pengguna nyata hadir.",
       aboutLink: "Selengkapnya tentang saya",
       contactTitle: "Kontak",
       contactTeaser: "Email, telepon, atau LinkedIn. Pilih yang benar-benar Anda buka.",
+      meta: {
+        role: "Peran",
+        practice: "Praktik",
+        base: "Basis",
+      },
     },
     work: {
       eyebrow: "Karya",
       title: "Karya pilihan",
       intro:
-        "Dua sistem yang saya bangun dari awal sampai rilis: profil laboratorium dengan CMS-nya, dan platform jurusan untuk lomba, beasiswa, serta artikel.",
+        "Tiga sistem yang saya bangun dari awal sampai rilis: profil laboratorium dengan CMS-nya, platform jurusan untuk lomba, beasiswa, serta artikel, dan model yang membaca kemasan untuk mencocokkan tipe kulit.",
       empty: "Belum ada proyek yang diterbitkan.",
+      viewCase: "Baca case study",
     },
     caseStudy: {
       back: "Semua karya",
       role: "Peran",
-      year: "Tahun",
+      year: "Periode",
       stack: "Stack",
+      overview: "Ringkasan",
       demo: "Lihat situs",
       repo: "Repositori",
     },
@@ -219,7 +246,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       paragraphs: [
         "Sebagian besar pekerjaan saya ada di backend: skema relasional, REST API, aturan akses, dan alur persetujuan yang menentukan kapan sesuatu boleh tampil. Saya menyukai bagian ketika model data harus bertahan saat bertemu pengguna nyata — bookmark yang tidak boleh ganda, peran yang tidak boleh melihat menu tertentu, tenggat yang harus diverifikasi sebelum terbit.",
         "Kerja koordinasi bukan pengalihan. Menjalankan acara berarti memegang jadwal bersama orang lain, tempat detail yang terlewat langsung terlihat dan tidak bisa ditambal setelah rilis. Dari situ saya belajar mencatat, memastikan sebelum menganggap, dan menjaga rencana cukup sederhana agar orang yang lelah pukul enam pagi masih bisa mengikutinya.",
-        "Di kedua proyek saya menulis skema dan aturan akses lebih dulu. Itu bagian yang paling mahal diubah setelah orang mulai memakainya.",
+        "Di setiap proyek saya menulis skema dan aturan akses lebih dulu. Itu bagian yang paling mahal diubah setelah orang mulai memakainya.",
       ],
       skillsTitle: "Keahlian",
       resumeLink: "Pendidikan, pengalaman, dan sertifikasi",
@@ -229,9 +256,12 @@ const dictionaries: Record<Locale, Dictionary> = {
       title: "Rekam jejak",
       intro:
         "Pendidikan, pengalaman, sertifikasi, dan satu penghargaan. Versi PDF berisi catatan yang sama, diformat untuk dicetak.",
-      download: "Unduh CV",
+      download: "Unduh CV (PDF, 2 Halaman)",
       education: "Pendidikan",
       experience: "Pengalaman",
+      experienceAcademic: "Magang, akademik & penelitian",
+      experienceOrganisation: "Organisasi & kepanitiaan",
+      skills: "Keahlian",
       certifications: "Sertifikasi",
       awards: "Penghargaan",
     },

@@ -7,14 +7,17 @@
  */
 export const site = {
   name: "Muhammad Rizky Firdiansyah",
-  position: "Software Developer & Data Analyst",
+  position: "Software Developer",
   secondary: "Freelance Event & Wedding Coordinator",
-  location: "Malang, Indonesia",
+  location: {
+    en: "Malang, East Java",
+    id: "Malang, Jawa Timur",
+  },
   email: "mr.frdsyh@gmail.com",
   phone: "+62895403239310",
   linkedin: "https://www.linkedin.com/in/rizkyfirdiansyah",
   /** Fill in to show the GitHub icon. Empty string hides it. */
-  github: "",
-  cv: "/CV_MuhammadRizkyFirdiansyah.pdf",
+  github: "https://github.com/RizkyFirdiansyah",
+  cv: "/CV_MuhammadRizkyFirdiansyah_2026.pdf",
   startYear: 2026,
 };
