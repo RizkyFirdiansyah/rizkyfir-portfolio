@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
-import { Figure } from "@/components/media/figure";
-import { ProjectIndex } from "@/components/work/project-index";
-import { figures } from "@/content/media";
+import { ProjectCard } from "@/components/work/project-card";
+import { figures, type FigureMedia } from "@/content/media";
 import { getProjects } from "@/content/projects";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
@@ -17,6 +16,19 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: { canonical: `/${locale}/work` },
   };
 }
+
+const projectFigures: Record<string, FigureMedia> = {
+  skinmatch: figures.skinMatch,
+  "profil-lab-ivss": figures.ivssProduct,
+  "informasi-lomba": figures.lombaTeam,
+};
+
+/** Staggered two-column rhythm; index picks the slot, not the grid order. */
+const slotClasses = [
+  "md:col-span-7",
+  "md:col-span-5 md:mt-16",
+  "md:col-span-7 md:col-start-6",
+];
 
 export default async function WorkPage() {
   const locale = await getLocale();
@@ -35,29 +47,31 @@ export default async function WorkPage() {
         <p className="mt-16 text-body text-muted">{dictionary.work.empty}</p>
       ) : (
         <>
-          <div className="mt-14 grid grid-cols-1 gap-10 border-t border-rule pt-10 md:grid-cols-2 md:gap-6">
-            <Figure
-              figure={figures.ivssModules}
-              locale={locale}
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-            <Figure
-              figure={figures.lombaFlow}
-              locale={locale}
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-          </div>
+          <div className="mt-14 grid grid-cols-1 gap-6 border-t border-rule pt-10 md:grid-cols-12">
+            {items.map((project, index) => {
+              const figure = projectFigures[project.slug];
 
-          <div className="mt-16">
-            <ProjectIndex
-              locale={locale}
-              items={items.map((project) => ({
-                slug: project.slug,
-                year: project.year,
-                title: project.copy.title,
-                role: project.copy.role,
-              }))}
-            />
+              if (!figure) return null;
+
+              return (
+                <div
+                  key={project.slug}
+                  className={slotClasses[index] ?? "md:col-span-6"}
+                >
+                  <ProjectCard
+                    locale={locale}
+                    slug={project.slug}
+                    period={project.period}
+                    title={project.copy.title}
+                    role={project.copy.role}
+                    stack={project.stack}
+                    figure={figure}
+                    action={dictionary.work.viewCase}
+                    index={String(index + 1).padStart(2, "0")}
+                  />
+                </div>
+              );
+            })}
           </div>
         </>
       )}
