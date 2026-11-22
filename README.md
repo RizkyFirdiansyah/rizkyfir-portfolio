@@ -58,33 +58,39 @@ plus the internal `/styleguide`.
   international format for `tel:` links.
 - **Project links**: `content/projects.ts` → `links.demo` and `links.repo`.
   Each one renders only when it holds a URL. Leave both empty to hide the row.
+- **Project dates**: `content/projects.ts` → `period` holds the month range as
+  printed on the CV; `year` is the short form used in the home index.
 - **Project copy**: same file, `copy.en` / `copy.id`.
 - **GitHub icon**: set `site.github` in `lib/site.ts`; the icon appears on its own.
 - **Resume data**: `content/resume.ts` — education, experience, certifications,
-  awards, and the skill groups used on the About page.
+  awards, and the skill groups used on both the About and Resume pages.
+  Each experience entry carries a `group` (`academic` or `organisation`), which
+  decides which sub-heading it lands under on `/resume`.
 - **Interface copy**: `lib/i18n/dictionary.ts` (two locales, same keys).
 - **Tagline**: `home.tagline` in both dictionaries.
-- **CV file**: `public/CV_MuhammadRizkyFirdiansyah.pdf`, linked from `/resume`.
+- **CV file**: `public/CV_MuhammadRizkyFirdiansyah_2026.pdf`, linked from `/resume`.
 - **Images**: every image is declared in `content/media.ts` (`src`, `width`,
   `height`, `alt`, optional `caption`, both locales). Generated plates live in
   `public/images/` and `public/og.png`.
 
 ## Replacing the generated plates with photographs
 
-1. Drop the photo into `public/images/` using the same filename and aspect ratio
-   (3:2 for project and event slots, 4:5 for the portrait).
-2. If the extension changed, update `src`, `width`, and `height` in
-   `content/media.ts`.
+1. Drop the photo into `public/images/`. The filename does not have to match the
+   old plate; any of `.jpg`, `.jpeg`, or `.png` works.
+2. Update `src`, `width`, and `height` in `content/media.ts` to the real pixel
+   size. The CSS never forces an aspect ratio, so a 3:4 or 1:1 photo is not
+   cropped — it only changes the block height.
 3. Rewrite `alt` and `caption` in that file for both locales. Alt describes the
-   function of the image; the caption is optional and sits on a hairline.
+   content of the photo; the caption is optional and sits on a hairline.
 4. Re-run `npm run build`. Next caches optimised images, so delete
    `.next/cache/images` if a replaced file still shows the old version.
 
 Slots: `portrait` (About), `homeBand` (full-bleed Home band, 2400×1600),
-`ivssSchema` + `ivssModules`, `lombaFlow` + `lombaApproval`, `eventRunsheet`
-(About). `/og.png` is the Open Graph card. `design/CANVAS.md` documents what each
-plate contains and how it was made; `design/plates/make_plates.py` regenerates
-the plates with Pillow (a local tool, not an application dependency).
+`ivssProduct` + `ivssTeam`, `lombaTeam` + `lombaApproval`, `skinMatch` (plate
+for the SkinMatch pipeline), `eventDay` (About).
+`/og.png` is the Open Graph card. `design/CANVAS.md` documents each slot;
+`design/plates/make_plates.py` regenerates the remaining plates with Pillow
+(a local tool, not an application dependency).
 
 Certification titles stay untranslated because they are official course names.
 Programme names are kept verbatim so the site and the PDF agree.

@@ -35,22 +35,30 @@ tanda signal yang menandai hubungan atau baris yang penting.
 
 ## Daftar
 
+Status: Fig. 00, 02, 04, dan 06 sudah memakai foto asli. Fig. 01, 03, 05, 07,
+dan 08 masih plat sementara.
+
 | Fig. | Berkas | Ukuran | Isi |
 |---|---|---|---|
-| 00 | `public/images/portrait.png` | 1200×1500 | Plat potret 4:5 |
+| 00 | `public/images/portrait.jpg` | 800×800 | Foto potret |
 | 01 | `public/images/home-band.png` | 2400×1600 | Plat tempat, band 3:2 |
-| 02 | `public/images/ivss-01.png` | 2400×1600 | Skema relasional IVSS |
-| 03 | `public/images/ivss-02.png` | 2400×1600 | Peta modul dan peran |
-| 04 | `public/images/lomba-01.png` | 2400×1600 | Alur entitas lomba |
+| 02 | `public/images/ivss-01.jpeg` | 960×1280 | Foto tim IVSS, 3:4 |
+| 03 | `public/images/ivss-02.png` | 1920×1080 | Tangkapan beranda Lab IVSS, 16:9 |
+| 04 | `public/images/lomba-01.jpeg` | 960×1280 | Foto tim lomba, 3:4 |
 | 05 | `public/images/lomba-02.png` | 2400×1600 | Alur persetujuan |
-| 06 | `public/images/event-01.png` | 2400×1600 | Runsheet acara (template) |
+| 06 | `public/images/event-01.jpg` | 960×1280 | Foto hari acara, 3:4 |
 | 07 | `public/og.png` | 1200×630 | Gambar OG |
+| 08 | `public/images/skinmatch-pipeline.png` | 2400×1600 | Pipeline SkinMatch: foto kemasan → OCR → klasifikasi → empat tipe kulit |
 
 Generator: `design/plates/make_plates.py` (Pillow, dijalankan manual; bukan
 dependency aplikasi). Jalankan ulang dengan `python design/plates/make_plates.py`.
 
 ## Mengganti dengan foto
 
-1. Simpan foto memakai nama berkas dan rasio yang sama di `public/images/`.
-2. Perbarui `src`, `width`, `height` di `content/media.ts` bila ekstensi berubah.
-3. Tulis ulang `alt` dan `caption` di berkas yang sama untuk kedua locale.
+1. Nama berkas tidak harus sama; yang penting `src` di `content/media.ts` cocok.
+   Ekstensi bebas (`.jpg`, `.jpeg`, `.png`) karena `next/image` membaca isi berkas.
+2. Perbarui `src`, `width`, dan `height` di `content/media.ts` sesuai ukuran asli.
+   Rasio tidak dipaksa oleh CSS — gambar memakai `h-auto w-full` — jadi foto 3:4
+   atau 1:1 tidak akan terpotong, hanya mengubah tinggi blok.
+3. Tulis ulang `alt` dan `caption` di berkas yang sama untuk kedua locale. `alt`
+   menjelaskan isi foto, bukan mengulang judul proyek.

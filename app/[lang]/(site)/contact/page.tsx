@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactLinks } from "@/components/contact/contact-links";
 import { PageHeader } from "@/components/layout/page-header";
+import { ArrowRightIcon } from "@/components/ui/icons";
+import { Panel, PanelBody, PanelFooter } from "@/components/ui/panel";
 import { getDictionary } from "@/lib/i18n/dictionary";
 import { getLocale } from "@/lib/i18n/get-locale";
 
@@ -33,20 +35,24 @@ export default async function ContactPage() {
           {dictionary.contact.title}
         </p>
         <div className="col-span-12 md:col-span-9">
-          <div className="-ml-3">
-            <ContactLinks labels={dictionary.contact} />
-          </div>
-          <p className="mt-8 max-w-measure text-body text-muted">
-            {dictionary.contact.note}
-          </p>
-          <p className="mt-6">
-            <Link
-              href={`/${locale}/resume`}
-              className="link-slide font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
-            >
-              {dictionary.about.resumeLink}
-            </Link>
-          </p>
+          <ContactLinks labels={dictionary.contact} />
+
+          <Panel className="mt-6">
+            <PanelBody>
+              <p className="max-w-measure text-body text-muted">
+                {dictionary.contact.note}
+              </p>
+            </PanelBody>
+            <PanelFooter>
+              <Link
+                href={`/${locale}/resume`}
+                className="link-slide inline-flex items-center gap-2 font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
+              >
+                {dictionary.about.resumeLink}
+                <ArrowRightIcon width={14} height={14} />
+              </Link>
+            </PanelFooter>
+          </Panel>
         </div>
       </div>
     </div>

@@ -2,6 +2,20 @@ import Link from "next/link";
 import { ContactLinks } from "@/components/contact/contact-links";
 import { Figure } from "@/components/media/figure";
 import { ProjectIndex } from "@/components/work/project-index";
+import {
+  ArrowRightIcon,
+  CalendarIcon,
+  CodeIcon,
+  MapPinIcon,
+} from "@/components/ui/icons";
+import {
+  IconTile,
+  Panel,
+  PanelBody,
+  PanelFooter,
+  Spec,
+  SpecList,
+} from "@/components/ui/panel";
 import { figures } from "@/content/media";
 import { getFeaturedProjects } from "@/content/projects";
 import { getDictionary } from "@/lib/i18n/dictionary";
@@ -17,24 +31,34 @@ export default async function HomePage() {
     <>
       <div className="mx-auto max-w-page px-4 md:px-6">
         <section className="grid grid-cols-12 gap-4 pt-16 pb-12 md:gap-6 md:pt-24 md:pb-16">
-          <div className="col-span-12 flex flex-col gap-2 md:col-span-3">
-            <p className="font-mono text-meta text-muted uppercase">
-              {site.position}
-            </p>
-            <p className="font-mono text-meta text-muted uppercase">
-              {site.secondary}
-            </p>
-            <p className="font-mono text-meta text-muted uppercase">
-              {site.location}
-            </p>
-          </div>
-          <div className="col-span-12 md:col-span-9">
+          <div className="col-span-12 md:order-last md:col-span-8 lg:col-span-9">
             <h1 className="max-w-measure font-serif text-display text-balance">
               {dictionary.home.tagline}
             </h1>
             <p className="mt-8 max-w-measure text-body text-muted">
               {dictionary.home.lede}
             </p>
+          </div>
+          <div className="col-span-12 md:order-first md:col-span-4 lg:col-span-3">
+            <Panel>
+              <SpecList>
+                <Spec
+                  label={dictionary.home.meta.role}
+                  value={site.position}
+                  icon={<CodeIcon width={16} height={16} />}
+                />
+                <Spec
+                  label={dictionary.home.meta.practice}
+                  value={site.secondary}
+                  icon={<CalendarIcon width={16} height={16} />}
+                />
+                <Spec
+                  label={dictionary.home.meta.base}
+                  value={site.location[locale]}
+                  icon={<MapPinIcon width={16} height={16} />}
+                />
+              </SpecList>
+            </Panel>
           </div>
         </section>
       </div>
@@ -55,9 +79,10 @@ export default async function HomePage() {
             </h2>
             <Link
               href={`/${locale}/work`}
-              className="link-slide font-mono text-meta text-muted uppercase transition-colors duration-(--duration-quick) hover:text-signal"
+              className="link-slide group inline-flex items-center gap-2 font-mono text-meta text-muted uppercase transition-colors duration-(--duration-quick) hover:text-signal"
             >
               {dictionary.home.allWork}
+              <ArrowRightIcon width={14} height={14} />
             </Link>
           </div>
 
@@ -79,17 +104,25 @@ export default async function HomePage() {
             {dictionary.home.aboutTitle}
           </h2>
           <div className="col-span-12 md:col-span-9">
-            <p className="max-w-measure text-body">
-              {dictionary.home.aboutTeaser}
-            </p>
-            <p className="mt-6">
-              <Link
-                href={`/${locale}/about`}
-                className="link-slide font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
-              >
-                {dictionary.home.aboutLink}
-              </Link>
-            </p>
+            <Panel className="max-w-measure">
+              <PanelBody>
+                <div className="flex items-start gap-4">
+                  <IconTile>
+                    <CodeIcon width={18} height={18} />
+                  </IconTile>
+                  <p className="text-body">{dictionary.home.aboutTeaser}</p>
+                </div>
+              </PanelBody>
+              <PanelFooter>
+                <Link
+                  href={`/${locale}/about`}
+                  className="link-slide inline-flex items-center gap-2 font-mono text-meta uppercase transition-colors duration-(--duration-quick) hover:text-signal"
+                >
+                  {dictionary.home.aboutLink}
+                  <ArrowRightIcon width={14} height={14} />
+                </Link>
+              </PanelFooter>
+            </Panel>
           </div>
         </section>
 
@@ -98,12 +131,16 @@ export default async function HomePage() {
             {dictionary.home.contactTitle}
           </h2>
           <div className="col-span-12 md:col-span-9">
-            <p className="max-w-measure text-body text-muted">
-              {dictionary.home.contactTeaser}
-            </p>
-            <div className="mt-2 -ml-3">
-              <ContactLinks labels={dictionary.contact} />
-            </div>
+            <Panel>
+              <PanelBody>
+                <p className="max-w-measure text-body text-muted">
+                  {dictionary.home.contactTeaser}
+                </p>
+                <div className="mt-4">
+                  <ContactLinks labels={dictionary.contact} />
+                </div>
+              </PanelBody>
+            </Panel>
           </div>
         </section>
       </div>
