@@ -136,7 +136,7 @@ def portrait():
     for i in range(1, 4):
         s.vline(m + (1040 * i) / 4, m + 40, 1360)
 
-    s.mono("SOFTWARE DEVELOPER & DATA ANALYST", m, 168, 12, INK, 2)
+    s.mono("SOFTWARE DEVELOPER", m, 168, 12, INK, 2)
     s.mono("FREELANCE EVENT & WEDDING COORDINATOR", m, 194, 12, MUTED, 2)
 
     size = s.fit(SERIF, "Firdiansyah", 1040, 196)
@@ -453,6 +453,79 @@ def event_runsheet():
 
 
 # ---------------------------------------------------------------------------
+# Fig. 08 — SkinMatch extraction and classification pipeline, 3:2
+# ---------------------------------------------------------------------------
+def skinmatch_pipeline():
+    s = Sheet(2400, 1600)
+    m = 120
+
+    s.mono("FIG. 08 / PIPELINE / SKINMATCH", m, m, 14, MUTED, 2.4)
+    s.serif("Reading the label", m, 176, 76)
+    s.mono(
+        "FROM A PACKAGING PHOTO TO FOUR SKIN TYPES",
+        m,
+        282,
+        16,
+        MUTED,
+        2.2,
+    )
+
+    stages = [
+        ("01", "PHOTO", "PACKAGING COMPOSITION"),
+        ("02", "OCR", "OPENCV / PADDLEOCR"),
+        ("03", "CLASSIFIER", "TF-IDF / LINEARSVC"),
+        ("04", "MATCH", "FOUR SKIN TYPES"),
+    ]
+    gap = 60
+    box_w = (2400 - 2 * m - gap * 3) / 4
+    box_y = 430
+    box_h = 220
+
+    for index, (number, label, note) in enumerate(stages):
+        x = m + index * (box_w + gap)
+        s.box(x, box_y, box_w, box_h, INK, 1)
+        s.mono(f"{number} / STAGE", x + 28, box_y + 26, 13, MUTED, 2.2)
+        s.mono(label, x + 28, box_y + 78, 24, INK, 2.4, bold=True)
+        s.mono(note, x + 28, box_y + 140, 13, MUTED, 1.6)
+        if index < len(stages) - 1:
+            s.arrow(
+                x + box_w,
+                box_y + box_h / 2,
+                x + box_w + gap,
+                box_y + box_h / 2,
+                SIGNAL,
+                2,
+                12,
+            )
+
+    s.mono("RAPIDFUZZ REPAIRS NEAR-MATCHES AT STAGE 02", m, 700, 14, MUTED, 2)
+
+    s.hline(m, 2400 - m, 770, INK)
+    s.mono("MATCH LEVEL / FOUR CATEGORIES", m, 802, 14, MUTED, 2.4)
+    s.mono_right("MULTI-LABEL", 2400 - m, 802, 14, MUTED, 2.4)
+
+    categories = [
+        ("01", "Oily & acne-prone"),
+        ("02", "Dry"),
+        ("03", "Sensitive"),
+        ("04", "Normal"),
+    ]
+    row_y = 870
+    row_h = 110
+    for index, (number, label) in enumerate(categories):
+        y = row_y + index * row_h
+        s.hline(m, 2400 - m, y)
+        s.mono(number, m, y + 34, 15, MUTED, 2)
+        s.serif(label, m + 120, y + 18, 44)
+    s.hline(m, 2400 - m, row_y + len(categories) * row_h)
+
+    s.hline(m, 2400 - m, 1420)
+    s.mono("ONE PRODUCT CAN MATCH MORE THAN ONE TYPE", m, 1450, 14, MUTED, 2.2)
+    s.mono_right("FIG. 08 / SKINMATCH", 2400 - m, 1450, 14, MUTED, 2.2)
+    return s, IMAGE_DIR / "skinmatch-pipeline.png"
+
+
+# ---------------------------------------------------------------------------
 # Fig. 07 — Open Graph card, 1200x630
 # ---------------------------------------------------------------------------
 def og_card():
@@ -468,7 +541,7 @@ def og_card():
     s.serif("Firdiansyah", m, 130 + size * 0.92, size)
 
     s.hline(m, m + 120, 372, SIGNAL, 3)
-    s.mono("SOFTWARE DEVELOPER & DATA ANALYST", m, 400, 14, INK, 2.2)
+    s.mono("SOFTWARE DEVELOPER", m, 400, 14, INK, 2.2)
     s.mono("FREELANCE EVENT & WEDDING COORDINATOR", m, 426, 12, MUTED, 2)
 
     s.hline(m, 1200 - m, 512)
@@ -486,6 +559,7 @@ def main():
         lomba_flow,
         lomba_approval,
         event_runsheet,
+        skinmatch_pipeline,
         og_card,
     ]
     for build in plates:

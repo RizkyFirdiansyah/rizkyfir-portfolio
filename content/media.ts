@@ -1,9 +1,9 @@
 import type { Locale } from "@/lib/i18n/locales";
 
 /**
- * Every image on the site is declared here. To swap the generated plates for
- * photographs, replace the file in `public/images/`, update `src`, `width`,
- * and `height` if the file changed shape, then rewrite `alt` and `caption`.
+ * Every image on the site is declared here. To swap a photograph, replace the
+ * file in `public/images/`, update `src`, `width`, and `height` if the file
+ * changed shape, then rewrite `alt` and `caption`.
  */
 export type FigureMedia = {
   src: string;
@@ -14,12 +14,12 @@ export type FigureMedia = {
 };
 
 const portrait: FigureMedia = {
-  src: "/images/portrait.png",
-  width: 1200,
-  height: 1500,
+  src: "/images/portrait.jpg",
+  width: 800,
+  height: 800,
   alt: {
-    en: "Letterpress-style plate with the full name, both roles, and the city.",
-    id: "Plat tipografi berisi nama lengkap, dua peran, dan kota.",
+    en: "Rizky, wearing glasses, a black blazer, and a white shirt, standing in a decorated event hall.",
+    id: "Rizky berkacamata dengan blazer hitam dan kemeja putih, berdiri di aula acara yang didekorasi.",
   },
 };
 
@@ -33,45 +33,45 @@ const homeBand: FigureMedia = {
   },
 };
 
-const ivssSchema: FigureMedia = {
+const ivssProduct: FigureMedia = {
+  src: "/images/ivss-02.jpeg",
+  width: 1920,
+  height: 1080,
+  alt: {
+    en: "Lab IVSS homepage: a blue navigation bar above a photograph of the campus building, with the laboratory name and a short research statement.",
+    id: "Beranda Lab IVSS: bilah navigasi biru di atas foto gedung kampus, dengan nama laboratorium dan pernyataan riset singkat.",
+  },
+  caption: {
+    en: "The public profile, served from the same schema as the CMS.",
+    id: "Profil publik, dilayani dari skema yang sama dengan CMS.",
+  },
+};
+
+const ivssTeam: FigureMedia = {
   src: "/images/ivss-01.png",
-  width: 2400,
-  height: 1600,
+  width: 960,
+  height: 1280,
   alt: {
-    en: "Relational schema diagram: users, roles, profile pages, facilities, and gallery, with role_id and updated_by relations.",
-    id: "Diagram skema relasional: users, roles, profile pages, facilities, dan gallery, dengan relasi role_id dan updated_by.",
+    en: "Five students in matching blue campus shirts in front of the Jurusan Teknologi Informasi wall; two of them hold laptops.",
+    id: "Lima mahasiswa berkemeja biru kampus di depan dinding Jurusan Teknologi Informasi; dua di antaranya memegang laptop.",
   },
   caption: {
-    en: "One schema for the public profile and the internal CMS.",
-    id: "Satu skema untuk profil publik dan CMS internal.",
+    en: "The project team at the department.",
+    id: "Tim proyek di jurusan.",
   },
 };
 
-const ivssModules: FigureMedia = {
-  src: "/images/ivss-02.png",
-  width: 2400,
-  height: 1600,
+const lombaTeam: FigureMedia = {
+  src: "/images/lomba-01.jpg",
+  width: 960,
+  height: 1280,
   alt: {
-    en: "Four module blocks: user management, facility inventory, activity gallery, and dynamic profile, beside the three roles.",
-    id: "Empat blok modul: manajemen pengguna, inventori fasilitas, galeri kegiatan, dan profil dinamis, di samping tiga peran.",
+    en: "Three students in blazers on a stage, holding a third-place certificate for the ICT business category.",
+    id: "Tiga mahasiswa berblazer di atas panggung, memegang sertifikat Juara 3 bidang bisnis TIK.",
   },
   caption: {
-    en: "Four modules behind one admin panel.",
-    id: "Empat modul di balik satu panel admin.",
-  },
-};
-
-const lombaFlow: FigureMedia = {
-  src: "/images/lomba-01.png",
-  width: 2400,
-  height: 1600,
-  alt: {
-    en: "Entity flow from users and bookmarks through competitions, participants, and scores, plus articles moving through approvals to the public site.",
-    id: "Alur entitas dari pengguna dan bookmark ke lomba, peserta, dan penilaian, serta artikel yang melewati persetujuan menuju situs publik.",
-  },
-  caption: {
-    en: "From a saved bookmark to a published score.",
-    id: "Dari bookmark yang disimpan sampai nilai yang terbit.",
+    en: "Third place, ICT business category.",
+    id: "Juara 3, bidang bisnis TIK.",
   },
 };
 
@@ -89,28 +89,39 @@ const lombaApproval: FigureMedia = {
   },
 };
 
-const eventRunsheet: FigureMedia = {
-  src: "/images/event-01.png",
+const eventDay: FigureMedia = {
+  src: "/images/event-01.jpg",
+  width: 960,
+  height: 1280,
+  alt: {
+    en: "Rizky standing outdoors in a blue batik vest and white shirt, arms folded, beside a tree and broad leaves.",
+    id: "Rizky berdiri di luar ruangan dengan rompi batik biru dan kemeja putih, tangan terlipat, di samping pohon dan daun lebar.",
+  },
+};
+
+const skinMatch: FigureMedia = {
+  src: "/images/skinmatch-pipeline.png",
   width: 2400,
   height: 1600,
   alt: {
-    en: "Event runsheet template with time, cue, and owner columns from 06:00 to 16:00.",
-    id: "Template runsheet acara dengan kolom waktu, cue, dan penanggung jawab dari pukul 06.00 sampai 16.00.",
+    en: "Pipeline diagram: a packaging photo passes through OpenCV and PaddleOCR extraction, then a TF-IDF and LinearSVC classifier, ending in four skin-type categories.",
+    id: "Diagram pipeline: foto kemasan melewati ekstraksi OpenCV dan PaddleOCR, lalu klasifikasi TF-IDF dan LinearSVC, berakhir di empat kategori tipe kulit.",
   },
   caption: {
-    en: "A template, not a record of one wedding.",
-    id: "Sebuah template, bukan catatan satu pernikahan.",
+    en: "From packaging photo to four skin-type matches.",
+    id: "Dari foto kemasan ke empat kecocokan tipe kulit.",
   },
 };
 
 export const figures = {
   portrait,
   homeBand,
-  ivssSchema,
-  ivssModules,
-  lombaFlow,
+  ivssProduct,
+  ivssTeam,
+  lombaTeam,
   lombaApproval,
-  eventRunsheet,
+  eventDay,
+  skinMatch,
 };
 
 export const ogImage = "/og.png";

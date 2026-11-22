@@ -24,6 +24,8 @@ export type ProjectLinks = {
 export type Project = {
   slug: string;
   year: string;
+  /** Month range as printed on the CV, localised for display. */
+  period: Record<Locale, string>;
   stack: string[];
   links: ProjectLinks;
   copy: Record<Locale, ProjectCopy>;
@@ -35,9 +37,218 @@ export type Project = {
  */
 export const projects: Project[] = [
   {
-    slug: "profil-lab-ivss",
+    slug: "skinmatch",
     year: "2026",
-    stack: ["PHP 8", "PostgreSQL", "PDO", "Bootstrap 5"],
+    period: { en: "Sep 2026 — present", id: "Sep 2026 — sekarang" },
+    stack: [
+      "Python",
+      "FastAPI",
+      "MySQL",
+      "PaddleOCR",
+      "OpenCV",
+      "Scikit-learn",
+      "Flutter",
+    ],
+    links: {
+      demo: "",
+      repo: "",
+    },
+    copy: {
+      en: {
+        title: "SkinMatch",
+        role: "Project Manager, System Analyst & Model Engineer",
+        summary:
+          "A skincare app that reads a product's ingredient list from a phone photo and matches it against four skin types — one team, one data model, one model pipeline.",
+        thesis:
+          "A recommendation is only as good as the list it reads. The hard part was never the screen; it was getting accurate text out of a photographed package.",
+        sections: [
+          {
+            heading: "Context",
+            paragraphs: [
+              "A five-person project built around one question: can a photo of a product's packaging tell someone whether it suits their skin? The app reads the composition list, classifies the ingredients, and returns a match level for four skin types — oily and acne-prone, dry, sensitive, and normal.",
+              "Three surfaces had to agree with each other: a Flutter client, a FastAPI service, and the model pipeline behind it. My work sat at the joins — requirements, the UML data flow, the MySQL entity model, and the extraction and classification code itself.",
+            ],
+          },
+          {
+            heading: "Scope",
+            paragraphs: [
+              "The work spanned coordination, system design, and the model, because none of the three could be decided alone.",
+            ],
+            list: [
+              "Requirements analysis and a work breakdown structure for five people",
+              "UML data flow and a MySQL entity model shared by app, API, and model",
+              "Text extraction from packaging photos with OpenCV and PaddleOCR",
+              "Multi-label classification with TF-IDF and LinearSVC",
+              "FastAPI endpoints consumed by the Flutter client",
+            ],
+          },
+          {
+            heading: "Decisions",
+            paragraphs: [
+              "The pipeline is split into stages that fail separately. OpenCV finds and straightens the region worth reading, PaddleOCR turns it into text, and RapidFuzz repairs near-matches against the ingredient vocabulary. When a result is wrong, the stage that produced it can be pointed at.",
+              "Classification is multi-label, not single-label. One product can suit more than one skin type, and a model forced to choose one would invent a decision the data does not support. TF-IDF with LinearSVC keeps the model inspectable, with weights that can be read per ingredient.",
+              "MySQL holds products, ingredients, and their mapping; the model runs as a service, not as a library inside the app. The Flutter client never runs inference, so the phone stays a client and the model can be retrained without shipping an app update.",
+              "Progress is tracked against the work breakdown structure, with a report at each milestone. Five people moving through the same pipeline need a written plan more than they need a meeting.",
+            ],
+          },
+          {
+            heading: "Outcome",
+            paragraphs: [
+              "The pipeline runs end to end: a packaging photo goes in, a cleaned ingredient list comes out, and the classifier returns a match level for all four skin types. The data model holds from the Flutter client down to the classifier, and the project is still running.",
+            ],
+          },
+        ],
+      },
+      id: {
+        title: "SkinMatch",
+        role: "Manajer Proyek, Analis Sistem & Model Engineer",
+        summary:
+          "Aplikasi skincare yang membaca daftar komposisi dari foto kemasan dan mencocokkannya dengan empat tipe kulit — satu tim, satu model data, satu pipeline model.",
+        thesis:
+          "Rekomendasi hanya sebaik daftar yang dibacanya. Bagian tersulitnya bukan layar, melainkan mendapatkan teks yang akurat dari kemasan yang difoto.",
+        sections: [
+          {
+            heading: "Konteks",
+            paragraphs: [
+              "Proyek lima orang yang dibangun dari satu pertanyaan: bisakah foto kemasan produk memberi tahu apakah produk itu cocok untuk kulit seseorang? Aplikasi membaca daftar komposisi, mengklasifikasikan kandungannya, lalu mengembalikan tingkat kecocokan untuk empat tipe kulit — berminyak/berjerawat, kering, sensitif, dan normal.",
+              "Tiga permukaan harus saling sepakat: klien Flutter, layanan FastAPI, dan pipeline model di belakangnya. Pekerjaan saya berada di titik sambungnya — kebutuhan, alur data UML, model entitas MySQL, serta kode ekstraksi dan klasifikasi itu sendiri.",
+            ],
+          },
+          {
+            heading: "Cakupan",
+            paragraphs: [
+              "Pekerjaannya mencakup koordinasi, perancangan sistem, dan model, karena ketiganya tidak bisa diputuskan sendiri-sendiri.",
+            ],
+            list: [
+              "Analisis kebutuhan dan work breakdown structure untuk lima orang",
+              "Alur data UML dan model entitas MySQL yang dipakai aplikasi, API, dan model",
+              "Ekstraksi teks dari foto kemasan dengan OpenCV dan PaddleOCR",
+              "Klasifikasi multi-label dengan TF-IDF dan LinearSVC",
+              "Endpoint FastAPI yang dikonsumsi klien Flutter",
+            ],
+          },
+          {
+            heading: "Keputusan",
+            paragraphs: [
+              "Pipeline dipecah menjadi tahap-tahap yang gagal secara terpisah. OpenCV menemukan dan menegakkan area yang layak dibaca, PaddleOCR mengubahnya menjadi teks, dan RapidFuzz memperbaiki kemiripan yang hampir cocok dengan kosakata kandungan. Saat hasilnya salah, tahap yang menghasilkannya bisa ditunjuk langsung.",
+              "Klasifikasinya multi-label, bukan single-label. Satu produk bisa cocok untuk lebih dari satu tipe kulit, dan model yang dipaksa memilih satu akan mengarang keputusan yang tidak didukung data. TF-IDF dengan LinearSVC menjaga model tetap bisa diperiksa, dengan bobot yang bisa dibaca per kandungan.",
+              "MySQL menyimpan produk, kandungan, dan pemetaannya; model berjalan sebagai layanan, bukan pustaka di dalam aplikasi. Klien Flutter tidak pernah menjalankan inferensi, sehingga ponsel tetap menjadi klien dan model bisa dilatih ulang tanpa merilis pembaruan aplikasi.",
+              "Progres dipantau terhadap work breakdown structure, dengan laporan di setiap milestone. Lima orang yang bergerak di pipeline yang sama lebih membutuhkan rencana tertulis daripada rapat.",
+            ],
+          },
+          {
+            heading: "Hasil",
+            paragraphs: [
+              "Pipeline berjalan dari ujung ke ujung: foto kemasan masuk, daftar komposisi yang bersih keluar, dan pengklasifikasi mengembalikan tingkat kecocokan untuk keempat tipe kulit. Model data bertahan dari klien Flutter sampai ke pengklasifikasi, dan proyeknya masih berjalan.",
+            ],
+          },
+        ],
+      },
+    },
+  },
+  {
+    slug: "informasi-lomba",
+    year: "2026",
+    period: { en: "Apr — Jun 2026", id: "Apr — Jun 2026" },
+    stack: ["Laravel 12", "Filament", "Sanctum", "MySQL"],
+    links: {
+      demo: "",
+      repo: "",
+    },
+    copy: {
+      en: {
+        title: "Web Informasi Lomba Jurusan",
+        role: "Backend Developer & System Analyst",
+        summary:
+          "One platform for the department's competitions, scholarships, seminars, and educational articles — student interface, REST API, and a single admin panel.",
+        thesis:
+          "Academic information does not disappear because it is missing. It disappears because it is scattered across channels nobody owns.",
+        sections: [
+          {
+            heading: "Context",
+            paragraphs: [
+              "A Project-Based Learning project for the department: one platform where students find and manage academic and non-academic opportunities — competitions, scholarships, seminars, and educational articles.",
+              "Three surfaces had to stay consistent with each other: the student interface, a REST API, and a central admin panel. Everything I designed sat between them — the schema, the endpoints, and the rules that decide what is published.",
+            ],
+          },
+          {
+            heading: "Scope",
+            paragraphs: [
+              "The student side is not a notice board; it carries the data a student needs to act on an opportunity.",
+            ],
+            list: [
+              "Bookmarks and interests, with likes and CV management on the profile",
+              "Feedback and collaborator registration",
+              "Competition data, participants, and scoring",
+              "Approval workflow for information and articles before publishing",
+            ],
+          },
+          {
+            heading: "Decisions",
+            paragraphs: [
+              "The schema came first: competitions, participants, scores, bookmarks, articles, and the relations between them, mapped in Eloquent before any screen existed. Sanctum protects the API instead of sessions, which makes the client flow longer because a token has to be stored and sent, and removes the API's dependence on a browser session.",
+              "The admin panel runs on Filament. I gave up fine control over that interface and got approval states, role restrictions, and content tables in weeks.",
+              "Nothing publishes itself. Articles and information move through a review step that lives in the admin panel, so there is a delay between writing and publishing. A department page that announces an unverified scholarship deadline is worse than a page that waits.",
+            ],
+          },
+          {
+            heading: "Outcome",
+            paragraphs: [
+              "Delivered as a working platform: a student-facing interface, a protected REST API, and an admin panel covering competitions, participants, scoring, and collaborator requests. The approval workflow is enforced where content is created, not where it is displayed.",
+            ],
+          },
+        ],
+      },
+      id: {
+        title: "Web Informasi Lomba Jurusan",
+        role: "Backend Developer & Analis Sistem",
+        summary:
+          "Satu platform untuk lomba, beasiswa, seminar, dan artikel edukatif jurusan — antarmuka mahasiswa, REST API, dan satu panel admin.",
+        thesis:
+          "Informasi akademik tidak hilang karena tidak ada. Ia hilang karena tersebar di kanal yang tidak dimiliki siapa pun.",
+        sections: [
+          {
+            heading: "Konteks",
+            paragraphs: [
+              "Proyek Project-Based Learning untuk jurusan: satu platform tempat mahasiswa menemukan dan mengelola peluang akademik maupun non-akademik — lomba, beasiswa, seminar, dan artikel edukatif.",
+              "Tiga permukaan harus tetap konsisten: antarmuka mahasiswa, REST API, dan panel admin terpusat. Semua yang saya rancang berada di antara ketiganya — skema data, endpoint, dan aturan yang menentukan apa yang boleh terbit.",
+            ],
+          },
+          {
+            heading: "Cakupan",
+            paragraphs: [
+              "Sisi mahasiswa bukan papan pengumuman; ia membawa data yang dibutuhkan untuk benar-benar mengambil peluang.",
+            ],
+            list: [
+              "Bookmark dan peminatan, dengan likes serta manajemen CV di profil",
+              "Umpan balik dan pengajuan pendaftaran kolaborator",
+              "Data lomba, peserta, dan penilaian",
+              "Alur persetujuan informasi dan artikel sebelum diterbitkan",
+            ],
+          },
+          {
+            heading: "Keputusan",
+            paragraphs: [
+              "Skema datang lebih dulu: lomba, peserta, penilaian, bookmark, artikel, dan relasi di antaranya, dipetakan lewat Eloquent sebelum satu layar pun ada. Sanctum menjaga API, bukan session, sehingga alur klien lebih panjang karena token harus disimpan dan dikirim, tetapi API tidak lagi bergantung pada session browser.",
+              "Panel admin memakai Filament. Kendali halus atas antarmuka itu saya lepaskan, dan sebagai gantinya status persetujuan, pembatasan peran, serta tabel konten siap dalam hitungan minggu.",
+              "Tidak ada konten yang terbit sendiri. Artikel dan informasi melewati tahap peninjauan di panel admin, jadi ada jeda antara menulis dan menerbitkan. Halaman jurusan yang mengumumkan tenggat beasiswa tanpa verifikasi lebih buruk daripada halaman yang menunggu.",
+            ],
+          },
+          {
+            heading: "Hasil",
+            paragraphs: [
+              "Diserahkan sebagai platform yang berjalan: antarmuka mahasiswa, REST API terproteksi, dan panel admin yang menangani data lomba, peserta, penilaian, serta pengajuan kolaborator. Alur persetujuan ditegakkan di tempat konten dibuat, bukan di tempat konten ditampilkan.",
+            ],
+          },
+        ],
+      },
+    },
+  },
+  {
+    slug: "profil-lab-ivss",
+    year: "2025",
+    period: { en: "Oct — Dec 2025", id: "Okt — Des 2025" },
+    stack: ["PHP 8 (native)", "PostgreSQL", "PDO", "Bootstrap 5"],
     links: {
       demo: "",
       repo: "",
@@ -133,109 +344,13 @@ export const projects: Project[] = [
       },
     },
   },
-  {
-    slug: "informasi-lomba",
-    year: "2025",
-    stack: ["Laravel 12", "Filament", "Sanctum", "MySQL"],
-    links: {
-      demo: "",
-      repo: "",
-    },
-    copy: {
-      en: {
-        title: "Web Informasi Lomba Jurusan",
-        role: "Backend Developer & System Analyst",
-        summary:
-          "One platform for the department's competitions, scholarships, seminars, and educational articles — student interface, REST API, and a single admin panel.",
-        thesis:
-          "Academic information does not disappear because it is missing. It disappears because it is scattered across channels nobody owns.",
-        sections: [
-          {
-            heading: "Context",
-            paragraphs: [
-              "A Project-Based Learning project for the department: one platform where students find and manage academic and non-academic opportunities — competitions, scholarships, seminars, and educational articles.",
-              "Three surfaces had to stay consistent with each other: the student interface, a REST API, and a central admin panel. Everything I designed sat between them — the schema, the endpoints, and the rules that decide what is published.",
-            ],
-          },
-          {
-            heading: "Scope",
-            paragraphs: [
-              "The student side is not a notice board; it carries the data a student needs to act on an opportunity.",
-            ],
-            list: [
-              "Bookmarks and interests, with likes and CV management on the profile",
-              "Feedback and collaborator registration",
-              "Competition data, participants, and scoring",
-              "Approval workflow for information and articles before publishing",
-            ],
-          },
-          {
-            heading: "Decisions",
-            paragraphs: [
-              "The schema came first: competitions, participants, scores, bookmarks, articles, and the relations between them, mapped in Eloquent before any screen existed. Sanctum protects the API instead of sessions, which makes the client flow longer because a token has to be stored and sent, and removes the API's dependence on a browser session.",
-              "The admin panel runs on Filament. I gave up fine control over that interface and got approval states, role restrictions, and content tables in weeks.",
-              "Nothing publishes itself. Articles and information move through a review step that lives in the admin panel, so there is a delay between writing and publishing. A department page that announces an unverified scholarship deadline is worse than a page that waits.",
-            ],
-          },
-          {
-            heading: "Outcome",
-            paragraphs: [
-              "Delivered as a working platform: a student-facing interface, a protected REST API, and an admin panel covering competitions, participants, scoring, and collaborator requests. The approval workflow is enforced where content is created, not where it is displayed.",
-            ],
-          },
-        ],
-      },
-      id: {
-        title: "Web Informasi Lomba Jurusan",
-        role: "Backend Developer & Analis Sistem",
-        summary:
-          "Satu platform untuk lomba, beasiswa, seminar, dan artikel edukatif jurusan — antarmuka mahasiswa, REST API, dan satu panel admin.",
-        thesis:
-          "Informasi akademik tidak hilang karena tidak ada. Ia hilang karena tersebar di kanal yang tidak dimiliki siapa pun.",
-        sections: [
-          {
-            heading: "Konteks",
-            paragraphs: [
-              "Proyek Project-Based Learning untuk jurusan: satu platform tempat mahasiswa menemukan dan mengelola peluang akademik maupun non-akademik — lomba, beasiswa, seminar, dan artikel edukatif.",
-              "Tiga permukaan harus tetap konsisten: antarmuka mahasiswa, REST API, dan panel admin terpusat. Semua yang saya rancang berada di antara ketiganya — skema data, endpoint, dan aturan yang menentukan apa yang boleh terbit.",
-            ],
-          },
-          {
-            heading: "Cakupan",
-            paragraphs: [
-              "Sisi mahasiswa bukan papan pengumuman; ia membawa data yang dibutuhkan untuk benar-benar mengambil peluang.",
-            ],
-            list: [
-              "Bookmark dan peminatan, dengan likes serta manajemen CV di profil",
-              "Umpan balik dan pengajuan pendaftaran kolaborator",
-              "Data lomba, peserta, dan penilaian",
-              "Alur persetujuan informasi dan artikel sebelum diterbitkan",
-            ],
-          },
-          {
-            heading: "Keputusan",
-            paragraphs: [
-              "Skema datang lebih dulu: lomba, peserta, penilaian, bookmark, artikel, dan relasi di antaranya, dipetakan lewat Eloquent sebelum satu layar pun ada. Sanctum menjaga API, bukan session, sehingga alur klien lebih panjang karena token harus disimpan dan dikirim, tetapi API tidak lagi bergantung pada session browser.",
-              "Panel admin memakai Filament. Kendali halus atas antarmuka itu saya lepaskan, dan sebagai gantinya status persetujuan, pembatasan peran, serta tabel konten siap dalam hitungan minggu.",
-              "Tidak ada konten yang terbit sendiri. Artikel dan informasi melewati tahap peninjauan di panel admin, jadi ada jeda antara menulis dan menerbitkan. Halaman jurusan yang mengumumkan tenggat beasiswa tanpa verifikasi lebih buruk daripada halaman yang menunggu.",
-            ],
-          },
-          {
-            heading: "Hasil",
-            paragraphs: [
-              "Diserahkan sebagai platform yang berjalan: antarmuka mahasiswa, REST API terproteksi, dan panel admin yang menangani data lomba, peserta, penilaian, serta pengajuan kolaborator. Alur persetujuan ditegakkan di tempat konten dibuat, bukan di tempat konten ditampilkan.",
-            ],
-          },
-        ],
-      },
-    },
-  },
 ];
 
 export function getProjects(locale: Locale) {
   return projects.map((project) => ({
     slug: project.slug,
     year: project.year,
+    period: project.period[locale],
     stack: project.stack,
     links: project.links,
     copy: project.copy[locale],
@@ -249,6 +364,7 @@ export function getProject(locale: Locale, slug: string) {
   return {
     slug: project.slug,
     year: project.year,
+    period: project.period[locale],
     stack: project.stack,
     links: project.links,
     copy: project.copy[locale],
