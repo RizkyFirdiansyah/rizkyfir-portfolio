@@ -2,11 +2,12 @@
 
 @theme {
   /* Color — only source of color in the project */
-  --color-paper: #f7f4ef;
-  --color-ink: #14120f;
-  --color-muted: #6b645c;
-  --color-rule: #e4dfd6;
-  --color-signal: #b4471f;
+  --color-paper: #F5F1EB;
+  --color-surface: #EBE6DC;
+  --color-ink: #2C2825;
+  --color-muted: #736D65;
+  --color-rule: #DDD7CC;
+  --color-signal: #8B5E3C;
 
   /* Type families */
   --font-serif: var(--font-instrument-serif);

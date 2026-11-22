@@ -36,7 +36,7 @@ export function Figure({
       />
       {caption ? (
         <figcaption className="mt-3 flex items-start gap-3 border-t border-rule pt-3 font-mono text-meta text-muted">
-          <span aria-hidden className="mt-1 block h-1.5 w-1.5 shrink-0 bg-signal" />
+          <span aria-hidden className="mt-1 block h-2 w-2 shrink-0 bg-signal" />
           <span className="max-w-measure">{caption}</span>
         </figcaption>
       ) : null}

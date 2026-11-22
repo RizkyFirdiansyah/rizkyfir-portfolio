@@ -3,9 +3,10 @@
 > Dokumen ini adalah sumber kebenaran visual. Jika sebuah komponen tidak sesuai dengannya,
 > komponen itu yang salah, bukan dokumen ini.
 >
-> Status: identitas sudah terisi. Gambar memakai plat sementara di
-> `public/images/` sampai foto asli tersedia; lihat `design/CANVAS.md` untuk
-> daftar slot dan cara menggantinya.
+> Status: identitas sudah terisi. Lima slot gambar sudah memakai foto asli
+> (`portrait.jpg`, `ivss-01.jpeg`, `ivss-02.png`, `lomba-01.jpeg`, `event-01.jpg`);
+> sisanya masih plat di `public/images/`. Lihat `design/CANVAS.md` untuk daftar
+> slot dan cara menggantinya.
 
 ## 1. Posisi
 
@@ -29,7 +30,7 @@ Referensi dipakai untuk mengambil **keputusan**, bukan layout. Jangan menyalin k
 
 ## 3. Sintesis
 
-Grid 12 kolom yang terlihat sebagai hairline + display serif + label mono + satu aksen terracotta.
+Grid 12 kolom yang terlihat sebagai hairline + display serif + label mono + satu aksen sienna.
 Radius 0, shadow 0, dekorasi 0. Komposisi asimetris: teks di kolom 1–7, meta di kolom 8–12.
 Simetri center dipakai hanya untuk satu hal per situs (halaman 404), tidak untuk section.
 
@@ -54,11 +55,12 @@ Aturan:
 
 | Token | Nilai | Fungsi | Kontras di paper |
 |---|---|---|---|
-| `paper` | `#F7F4EF` | latar utama | — |
-| `ink` | `#14120F` | teks utama | 17:1 |
-| `muted` | `#6B645C` | teks sekunder, caption | 5.3:1 |
-| `rule` | `#E4DFD6` | hairline, batas | — (non-teks) |
-| `signal` | `#B4471F` | link, underline, penanda aktif | 4.96:1 |
+| `paper` | `#F5F1EB` | latar utama | — |
+| `surface` | `#EBE6DC` | latar kartu, panel | — (non-teks) |
+| `ink` | `#2C2825` | teks utama | 13:1 |
+| `muted` | `#736D65` | teks sekunder, caption | 4.5:1 |
+| `rule` | `#DDD7CC` | hairline, batas | — (non-teks) |
+| `signal` | `#8B5E3C` | link, underline, penanda aktif | 5.1:1 |
 
 Aturan:
 - Hanya satu aksen. `signal` tidak pernah dipakai sebagai latar blok besar.
@@ -106,4 +108,4 @@ scroll indicator · Inter/Geist sebagai display · klaim tanpa angka · lorem ip
 |---|---|---|
 | Domain | `metadataBase`, sitemap, OG image | menunggu deploy |
 | Foto asli | portrait, band, visual proyek | menggantikan plat di `public/images/` |
-| Warna aksen final | seluruh situs | terracotta dipertahankan, lolos AA |
+| Warna aksen final | seluruh situs | sienna (#8B5E3C), lolos AA |

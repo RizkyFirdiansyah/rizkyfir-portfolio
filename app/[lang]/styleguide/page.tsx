@@ -1,5 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  ArrowRightIcon,
+  AwardIcon,
+  BadgeCheckIcon,
+  BriefcaseIcon,
+  CalendarIcon,
+  CheckIcon,
+  CodeIcon,
+  DatabaseIcon,
+  DownloadIcon,
+  FileTextIcon,
+  GithubIcon,
+  GraduationCapIcon,
+  LayersIcon,
+  LinkedinIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+  ServerIcon,
+  ShieldCheckIcon,
+} from "@/components/ui/icons";
+import {
+  Badge,
+  Callout,
+  Numeral,
+  Panel,
+  PanelFooter,
+  PanelHeader,
+  Spec,
+  SpecGrid,
+} from "@/components/ui/panel";
 import { getLocale } from "@/lib/i18n/get-locale";
 
 export const metadata: Metadata = {
@@ -8,11 +39,12 @@ export const metadata: Metadata = {
 };
 
 const palette = [
-  { token: "paper", hex: "#F7F4EF", note: "Latar utama", className: "bg-paper" },
-  { token: "ink", hex: "#14120F", note: "Teks utama · 17:1", className: "bg-ink" },
-  { token: "muted", hex: "#6B645C", note: "Teks sekunder · 5.3:1", className: "bg-muted" },
-  { token: "rule", hex: "#E4DFD6", note: "Hairline · non-teks", className: "bg-rule" },
-  { token: "signal", hex: "#B4471F", note: "Aksen · 4.96:1", className: "bg-signal" },
+  { token: "paper", hex: "#F5F1EB", note: "Latar utama", className: "bg-paper" },
+  { token: "surface", hex: "#EBE6DC", note: "Panel · non-teks", className: "bg-surface" },
+  { token: "ink", hex: "#2C2825", note: "Teks utama · 13:1", className: "bg-ink" },
+  { token: "muted", hex: "#736D65", note: "Teks sekunder · 4.5:1", className: "bg-muted" },
+  { token: "rule", hex: "#DDD7CC", note: "Hairline · non-teks", className: "bg-rule" },
+  { token: "signal", hex: "#8B5E3C", note: "Aksen · 5.1:1", className: "bg-signal" },
 ];
 
 const spacing = [
@@ -55,7 +87,7 @@ export default async function StyleguidePage() {
       <div className="divide-y divide-rule">
         <section className="py-12">
           <SectionHeading>Palette</SectionHeading>
-          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-5">
+          <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-6">
             {palette.map((color) => (
               <div key={color.token}>
                 <div className={`h-16 w-full border border-rule ${color.className}`} />
@@ -154,6 +186,88 @@ export default async function StyleguidePage() {
               </Link>
             </div>
           </div>
+        </section>
+
+        <section className="py-12">
+          <SectionHeading>Components</SectionHeading>
+          <div className="mt-6 grid gap-6 md:grid-cols-12">
+            <div className="md:col-span-7">
+              <Panel>
+                <PanelHeader
+                  icon={<CodeIcon width={16} height={16} />}
+                  label="Panel · header"
+                />
+                <SpecGrid>
+                  <Spec
+                    label="Tahun"
+                    value="2026"
+                    icon={<CalendarIcon width={16} height={16} />}
+                  />
+                  <Spec
+                    label="Peran"
+                    value="Backend"
+                    icon={<BriefcaseIcon width={16} height={16} />}
+                  />
+                  <Spec
+                    label="Stack"
+                    value="Laravel · PostgreSQL"
+                    icon={<LayersIcon width={16} height={16} />}
+                  />
+                </SpecGrid>
+                <PanelFooter>
+                  <span className="font-mono text-meta text-muted uppercase">
+                    Panel footer
+                  </span>
+                </PanelFooter>
+              </Panel>
+            </div>
+
+            <div className="space-y-6 md:col-span-5">
+              <Callout>Satu pernyataan serif, dibatasi garis kiri 2px.</Callout>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge>Laravel</Badge>
+                <Badge>PostgreSQL</Badge>
+                <Badge icon={<CheckIcon width={12} height={12} />}>Verified</Badge>
+                <Numeral>01</Numeral>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-12">
+          <SectionHeading>Icons · stroke 1.5</SectionHeading>
+          <ul className="mt-6 flex flex-wrap gap-3">
+            {[
+              { name: "mail", icon: <MailIcon /> },
+              { name: "phone", icon: <PhoneIcon /> },
+              { name: "github", icon: <GithubIcon /> },
+              { name: "linkedin", icon: <LinkedinIcon /> },
+              { name: "code", icon: <CodeIcon /> },
+              { name: "database", icon: <DatabaseIcon /> },
+              { name: "server", icon: <ServerIcon /> },
+              { name: "layers", icon: <LayersIcon /> },
+              { name: "calendar", icon: <CalendarIcon /> },
+              { name: "pin", icon: <MapPinIcon /> },
+              { name: "cap", icon: <GraduationCapIcon /> },
+              { name: "briefcase", icon: <BriefcaseIcon /> },
+              { name: "award", icon: <AwardIcon /> },
+              { name: "shield", icon: <ShieldCheckIcon /> },
+              { name: "file", icon: <FileTextIcon /> },
+              { name: "badge", icon: <BadgeCheckIcon /> },
+              { name: "download", icon: <DownloadIcon /> },
+              { name: "arrow", icon: <ArrowRightIcon /> },
+            ].map((entry) => (
+              <li
+                key={entry.name}
+                className="flex flex-col items-center gap-2 border border-rule bg-surface px-4 py-3"
+              >
+                <span className="text-ink">{entry.icon}</span>
+                <span className="font-mono text-meta text-muted">
+                  {entry.name}
+                </span>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="py-12">
